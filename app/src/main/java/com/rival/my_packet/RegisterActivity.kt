@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
 
                     if (respon != null) {
                         if (respon.status == 0) {
-                            Toast.makeText(this@RegisterActivity, respon.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegisterActivity, respon.pesan, Toast.LENGTH_SHORT).show()
                         } else {
                             sph.setStatusLogin(true)
                             startActivity(Intent(this@RegisterActivity, MainActivity::class.java))

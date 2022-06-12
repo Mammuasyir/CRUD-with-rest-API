@@ -22,7 +22,7 @@ class NotificationsFragment : Fragment() {
     lateinit var btnKeluar : TextView
     lateinit var namaUser : TextView
     lateinit var emailUser : TextView
-    lateinit var telpUser : TextView
+    lateinit var roleUser : TextView
     lateinit var img : ImageView
 
     override fun onCreateView(
@@ -51,7 +51,7 @@ class NotificationsFragment : Fragment() {
         val user = sph.getUser()
         namaUser.text = user?.name
         emailUser.text = user?.email
-        telpUser.text = user?.telp
+        roleUser.text = user?.role
 
         Glide.with(requireActivity())
             .load("https://ui-avatars.com/api/?name=${user?.name}&background=0D8ABC&color=fff&size=128")
@@ -62,7 +62,7 @@ class NotificationsFragment : Fragment() {
         btnKeluar = view.findViewById<TextView>(R.id.tv_logout)
         namaUser = view.findViewById<TextView>(R.id.tv_namaUser)
         emailUser = view.findViewById<TextView>(R.id.tv_emailUser)
-        telpUser = view.findViewById<TextView>(R.id.tv_telpUser)
+        roleUser = view.findViewById<TextView>(R.id.tv_telpUser)
         img = view.findViewById<ImageView>(R.id.profile_image)
     }
 }

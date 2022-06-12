@@ -50,14 +50,14 @@ class LoginActivity : AppCompatActivity() {
 
                     if (respon != null) {
                         if (respon.status == 0) {
-                            Toast.makeText(this@LoginActivity, respon.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, respon.pesan, Toast.LENGTH_SHORT).show()
                         } else {
 
                             sph.setStatusLogin(true)
-                            sph.setUser(respon.data!!)
+                            sph.setUser(respon.result!!)
 
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            Toast.makeText(this@LoginActivity, respon.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, respon.pesan, Toast.LENGTH_SHORT).show()
                             finish()
                         }
                     }
