@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/detail_dialog.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard_paket.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_notifications.xml" value="0.33" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/item_list_landing.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/menu/menu_detail.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_button_nav.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_musyrif.xml" value="0.1" />
