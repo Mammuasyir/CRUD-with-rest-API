@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+
 import com.rival.my_packet.databinding.ActivityMainBinding
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.ui.dashboard.DashboardFragment
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         sPH = SharedPreference(this)
         setUpBottomNav()
+
 
     }
 
