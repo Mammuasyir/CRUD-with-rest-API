@@ -24,6 +24,7 @@ import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 
 import com.rival.my_packet.model.ResponsePaket
+import kotlinx.android.synthetic.main.create_paket.*
 import kotlinx.android.synthetic.main.create_paket.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,49 +69,67 @@ class SatpamPaketFragment : Fragment() {
         val status = views.findViewById<TextView>(R.id.txt_status)
         val gambar = views.findViewById<Button>(R.id.btn_input_image)
 
+        add.setOnClickListener {
+            val nama = namaPenerima.text.toString()
+            val ekspedisi = ekspedisi.text.toString()
+            val status = status.text.toString()
+            //val gambar = gambar.text.toString()
 
+            ApiConfig.instanceRetrofit.inputPaket(nama, ekspedisi, status)
+                .enqueue(object : Callback<ResponsePaket> {
+                    override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
+                        Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<ResponsePaket>,
+                        response: Response<ResponsePaket>
+                    ) {
+                        val respon = response.body()
+
+                        if (respon != null) {
+                            if (respon.status == 0){
+                                Toast.makeText(context, "Gagal nambah", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show()
+                            alertDialog.dismiss()
+                        }
+                    }
+                })
+
+        }
         alertDialog.show()
-            }
+    }
 
 
 
 
-
-
-
-
-
-
-
-    private fun getPaketSatpam() {
-        ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
-            override fun onResponse(
-                call: Call<ResponsePaket>,
-                response: Response<ResponsePaket>
-            ) {
-                if (response.isSuccessful) {
-                    val ResponsePaket =
-                        response.body() as ResponsePaket
-                    val landing = ResponsePaket.result
-                    val landingAdapter = PaketAdapter(landing)
-                    rvSatpam.apply {
-                        setHasFixedSize(true)
-                        layoutManager = LinearLayoutManager(activity)
-                        (layoutManager as LinearLayoutManager).orientation =
-                            LinearLayoutManager.VERTICAL
-                        landingAdapter.notifyDataSetChanged()
-                        adapter = landingAdapter
+        private fun getPaketSatpam() {
+            ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
+                override fun onResponse(
+                    call: Call<ResponsePaket>,
+                    response: Response<ResponsePaket>
+                ) {
+                    if (response.isSuccessful) {
+                        val ResponsePaket =
+                            response.body() as ResponsePaket
+                        val landing = ResponsePaket.result
+                        val landingAdapter = PaketAdapter(landing)
+                        rvSatpam.apply {
+                            setHasFixedSize(true)
+                            layoutManager = LinearLayoutManager(activity)
+                            (layoutManager as LinearLayoutManager).orientation =
+                                LinearLayoutManager.VERTICAL
+                            landingAdapter.notifyDataSetChanged()
+                            adapter = landingAdapter
+                        }
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
-                Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
+                    Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
-
-    companion object {
-        const val REQ_CAM = 100
-    }
-}

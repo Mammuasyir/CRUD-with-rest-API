@@ -3,13 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_update_password.xml" value="0.67" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_welcome.xml" value="0.1" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/create_paket.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/detail_dialog.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard_paket.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_home.xml" value="0.18" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_notifications.xml" value="0.31483870967741934" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_musyrif_paket.xml" value="0.25" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_satpam_paket.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_welcome.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/item_list_landing.xml" value="0.22" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
@@ -22,15 +27,12 @@
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.2409336817668296" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/create_paket.xml" value="0.18780059814453126" />
-        <entry key="app/src/main/res/layout/detail_dialog.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.14463019250253292" />
         <entry key="app/src/main/res/layout/fragment_dashboard_paket.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22970530192057292" />
         <entry key="app/src/main/res/layout/fragment_musyrif_paket.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/fragment_satpam_paket.xml" value="0.40944809222776957" />
-        <entry key="app/src/main/res/layout/fragment_selesai_paket.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_list_landing.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/menu/menu_detail.xml" value="0.28229166666666666" />

@@ -85,8 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="1dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="20dp"
                 app:cardElevation="3dp">
 
                 <LinearLayout
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
+                    android:paddingVertical="30dp">
 
                     <RelativeLayout
                         android:id="@+id/btn_keranjang"
@@ -187,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="130dp"
                 android:text="Log out"
                 android:textColor="@color/oren" />
 
