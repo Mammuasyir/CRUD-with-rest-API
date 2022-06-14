@@ -41,6 +41,9 @@ interface ApiServices {
     @GET("paket-status/musyrif")
     fun getpaketMusyrif(): Call<ResponsePaket>
 
+    @GET("paket-status/selesai")
+    fun getpaketSelesai(): Call<ResponsePaket>
+
     @FormUrlEncoded
     @POST("paket-input")
     fun inputPaket(

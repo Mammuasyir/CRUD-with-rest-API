@@ -1,4 +1,4 @@
-package com.rival.my_packet.adapter
+package com.rival.my_packet.adapter.paket
 
 
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.rival.my_packet.R
 import com.rival.my_packet.model.ResultItem
 
-class SatpamAdapter(var satpam: List<ResultItem?>?) : RecyclerView.Adapter<SatpamAdapter.MyViewHolder>()  {
+class PaketAdapter(var satpam: List<ResultItem?>?) : RecyclerView.Adapter<PaketAdapter.MyViewHolder>()  {
     class MyViewHolder (val view:View) : RecyclerView.ViewHolder(view) {
 
         val tvTitle = view.findViewById<TextView>(R.id.txt_title)

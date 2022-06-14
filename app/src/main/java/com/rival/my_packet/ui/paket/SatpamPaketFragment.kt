@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.rival.my_packet.adapter.SatpamAdapter
+import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
 
 import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
@@ -49,7 +48,7 @@ class SatpamPaketFragment : Fragment() {
                     val ResponsePaket =
                         response.body() as ResponsePaket
                     val landing = ResponsePaket.result
-                    val landingAdapter = SatpamAdapter(landing)
+                    val landingAdapter = PaketAdapter(landing)
                     rvSatpam.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(activity)

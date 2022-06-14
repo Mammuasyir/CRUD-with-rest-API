@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.my_packet.R
-import com.rival.my_packet.adapter.SatpamAdapter
+import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentMusyrifPaketBinding
-import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 import com.rival.my_packet.model.ResponsePaket
 
 import retrofit2.Call
@@ -52,7 +50,7 @@ class MusyrifPaketFragment : Fragment() {
                     val responseMusyrif =
                         response.body() as ResponsePaket
                     val landing = responseMusyrif.result
-                    val landingAdapter = SatpamAdapter(landing)
+                    val landingAdapter = PaketAdapter(landing)
                     rvMusyrif.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(activity)
