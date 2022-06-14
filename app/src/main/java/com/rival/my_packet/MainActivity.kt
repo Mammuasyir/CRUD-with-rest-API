@@ -22,7 +22,7 @@ import com.rival.my_packet.ui.notifications.NotificationsFragment
 class MainActivity : AppCompatActivity() {
 
     val fragmentHome: Fragment = HomeFragment()
-    val fragmentCart: Fragment = DashboardFragment()
+    val fragmentDashboard: Fragment = DashboardFragment()
     val fragmentAccount: Fragment = NotificationsFragment()
     val fm: FragmentManager = supportFragmentManager
     var active: Fragment = fragmentHome
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpBottomNav() {
 
         fm.beginTransaction().add(R.id.container, fragmentHome).show(fragmentHome).commit()
-        fm.beginTransaction().add(R.id.container, fragmentCart).hide(fragmentCart).commit()
+        fm.beginTransaction().add(R.id.container, fragmentDashboard).hide(fragmentDashboard).commit()
         fm.beginTransaction().add(R.id.container, fragmentAccount).hide(fragmentAccount).commit()
 
 //        bottomNavigationView = findViewById(R.id.nav_view)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_dashboard -> {
-                    callFragment(1, fragmentCart)
+                    callFragment(1, fragmentDashboard)
                 }
 
                 R.id.navigation_notifications -> {

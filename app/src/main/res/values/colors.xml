@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="abu">#7A7A7A</color>
+    <color name="oren">#F16033</color>
+    <color name="oren_gelap">#DA3603</color>
 </resources>
