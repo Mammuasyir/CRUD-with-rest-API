@@ -14,7 +14,7 @@ import com.rival.my_packet.api.ApiConfig
 
 import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 
-import com.rival.my_packet.model.ResponseSatpam
+import com.rival.my_packet.model.ResponsePaket
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,15 +40,15 @@ class SatpamPaketFragment : Fragment() {
     }
 
     private fun getPaketSatpam() {
-        ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponseSatpam> {
+        ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
             override fun onResponse(
-                call: Call<ResponseSatpam>,
-                response: Response<ResponseSatpam>
+                call: Call<ResponsePaket>,
+                response: Response<ResponsePaket>
             ) {
                 if (response.isSuccessful) {
-                    val responseSatpam =
-                        response.body() as ResponseSatpam
-                    val landing = responseSatpam.result
+                    val ResponsePaket =
+                        response.body() as ResponsePaket
+                    val landing = ResponsePaket.result
                     val landingAdapter = SatpamAdapter(landing)
                     rvSatpam.apply {
                         setHasFixedSize(true)
@@ -61,7 +61,7 @@ class SatpamPaketFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseSatpam>, t: Throwable) {
+            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
                 Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         })

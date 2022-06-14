@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ResponseSatpam(
+data class ResponsePaket(
 
 	@field:SerializedName("result")
 	val result: List<ResultItem?>? = null,
