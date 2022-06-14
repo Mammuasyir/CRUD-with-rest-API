@@ -22,4 +22,9 @@
         android:name="com.rival.my_packet.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.rival.my_packet.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
 </navigation>

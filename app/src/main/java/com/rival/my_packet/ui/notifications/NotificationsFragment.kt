@@ -9,17 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.rival.my_packet.R
+import com.rival.my_packet.UpdatePasswordActivity
 import com.rival.my_packet.WelcomeActivity
-import com.rival.my_packet.databinding.FragmentNotificationsBinding
 import com.rival.my_packet.helper.SharedPreference
+import kotlinx.android.synthetic.main.fragment_notifications.*
 
 class NotificationsFragment : Fragment() {
 
     lateinit var sph : SharedPreference
     lateinit var btnKeluar : TextView
+    lateinit var btnUpdatePassword : TextView
     lateinit var namaUser : TextView
     lateinit var emailUser : TextView
     lateinit var roleUser : TextView
@@ -34,6 +35,12 @@ class NotificationsFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_notifications, container,false)
         init(view)
         sph = SharedPreference(requireActivity())
+
+//        btnUpdatePassword.setOnClickListener {
+//            val i= Intent(context, UpdatePasswordActivity::class.java)
+//            startActivity(i)
+//        }
+
         btnKeluar.setOnClickListener {
             sph.setStatusLogin(false)
             Toast.makeText(activity, "Anda Berhasil Keluar", Toast.LENGTH_SHORT).show()
@@ -62,7 +69,7 @@ class NotificationsFragment : Fragment() {
         btnKeluar = view.findViewById<TextView>(R.id.tv_logout)
         namaUser = view.findViewById<TextView>(R.id.tv_namaUser)
         emailUser = view.findViewById<TextView>(R.id.tv_emailUser)
-        roleUser = view.findViewById<TextView>(R.id.tv_telpUser)
+        roleUser = view.findViewById<TextView>(R.id.tv_roleUser)
         img = view.findViewById<ImageView>(R.id.profile_image)
     }
 }

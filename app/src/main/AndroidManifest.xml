@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MyPacket"
         tools:targetApi="31">
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
