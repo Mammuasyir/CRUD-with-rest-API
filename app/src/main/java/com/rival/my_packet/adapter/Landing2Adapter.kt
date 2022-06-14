@@ -48,7 +48,7 @@ class Landing2Adapter(var landingItem: Result?) : RecyclerView.Adapter<Landing2A
             val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
             val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
-            val UrlImage = "https://paket.siyap.co.id/storage/${landingItem?.paket?.get(position)?.img}"
+            val UrlImage = "https://paket.siyap.co.id/storage/${landingItem?.paketselesai?.get(position)?.img}"
 
             Glide.with(context).load(UrlImage).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = dataSelesai?.nama_penerima
