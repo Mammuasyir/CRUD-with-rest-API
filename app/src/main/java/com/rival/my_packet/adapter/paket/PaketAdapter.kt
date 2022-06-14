@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.rival.my_packet.R
 import com.rival.my_packet.model.ResultItem
 
-class PaketAdapter(var satpam: List<ResultItem?>?) : RecyclerView.Adapter<PaketAdapter.MyViewHolder>()  {
+class PaketAdapter(var paket: List<ResultItem?>?) : RecyclerView.Adapter<PaketAdapter.MyViewHolder>()  {
     class MyViewHolder (val view:View) : RecyclerView.ViewHolder(view) {
 
         val tvTitle = view.findViewById<TextView>(R.id.txt_title)
@@ -31,7 +31,7 @@ class PaketAdapter(var satpam: List<ResultItem?>?) : RecyclerView.Adapter<PaketA
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val context = holder.itemView.context
-        val data = satpam?.get(position)
+        val data = paket?.get(position)
         holder.tvTitle.text = data?.nama_penerima
 
         holder.btnDetail.setOnClickListener {
@@ -58,5 +58,5 @@ class PaketAdapter(var satpam: List<ResultItem?>?) : RecyclerView.Adapter<PaketA
         }
     }
 
-    override fun getItemCount() = satpam?.size ?: 0
+    override fun getItemCount() = paket?.size ?: 0
 }
