@@ -5,15 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.rival.my_packet.R
 import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
 
 import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 
 import com.rival.my_packet.model.ResponsePaket
+import kotlinx.android.synthetic.main.create_paket.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +42,29 @@ class SatpamPaketFragment : Fragment() {
         rvSatpam = binding.rvSatpam
         getPaketSatpam()
 
+        binding.fab.setOnClickListener {
+            addPaket()
+        }
+
         return root
+    }
+
+    private fun addPaket() {
+        val alertDialog = AlertDialog.Builder(requireActivity()).create()
+        val views = LayoutInflater.from(context).inflate(R.layout.create_paket, null)
+        alertDialog.setView(views)
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.setCancelable(false)
+
+        val add = views.findViewById<Button>(R.id.btn_add)
+
+
+
+
+        views.btn_add.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 
     private fun getPaketSatpam() {
