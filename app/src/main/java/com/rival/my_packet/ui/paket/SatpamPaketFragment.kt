@@ -91,9 +91,11 @@ class SatpamPaketFragment : Fragment() {
                             if (respon.status == 0){
                                 Toast.makeText(context, "Gagal nambah", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show()
-                            alertDialog.dismiss()
+                            else {
+                                Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show()
+                                alertDialog.dismiss()
+                                getPaketSatpam()
+                            }
                         }
                     }
                 })
