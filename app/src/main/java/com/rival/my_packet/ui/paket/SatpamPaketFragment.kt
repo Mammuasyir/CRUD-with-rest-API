@@ -1,6 +1,10 @@
 package com.rival.my_packet.ui.paket
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +28,8 @@ import kotlinx.android.synthetic.main.create_paket.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+
 
 
 class SatpamPaketFragment : Fragment() {
@@ -54,18 +60,27 @@ class SatpamPaketFragment : Fragment() {
         val views = LayoutInflater.from(context).inflate(R.layout.create_paket, null)
         alertDialog.setView(views)
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        alertDialog.setCancelable(false)
+        alertDialog.setCancelable(true)
 
         val add = views.findViewById<Button>(R.id.btn_add)
+        val namaPenerima = views.findViewById<TextView>(R.id.txt_nama_penerima)
+        val ekspedisi = views.findViewById<TextView>(R.id.txt_ekspedisi)
+        val status = views.findViewById<TextView>(R.id.txt_status)
+        val gambar = views.findViewById<Button>(R.id.btn_input_image)
 
 
-
-
-        views.btn_add.setOnClickListener {
-            alertDialog.dismiss()
-        }
         alertDialog.show()
-    }
+            }
+
+
+
+
+
+
+
+
+
+
 
     private fun getPaketSatpam() {
         ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
@@ -93,5 +108,9 @@ class SatpamPaketFragment : Fragment() {
                 Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    companion object {
+        const val REQ_CAM = 100
     }
 }
