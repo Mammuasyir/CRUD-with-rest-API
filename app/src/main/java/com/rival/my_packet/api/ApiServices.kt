@@ -2,6 +2,7 @@ package com.rival.my_packet.api
 
 import com.rival.my_packet.model.ResponseDashboard
 import com.rival.my_packet.model.ResponseLanding
+import com.rival.my_packet.model.ResponseSatpam
 import com.rival.my_packet.model.user.ResponseUser
 import retrofit2.Call
 import retrofit2.http.Field
@@ -32,4 +33,7 @@ interface ApiServices {
 
     @GET("dashboard")
     fun getdashboard(): Call<ResponseDashboard>
+
+    @GET("paket-status/satpam")
+    fun getpaketSatpam(): Call<ResponseSatpam>
 }
