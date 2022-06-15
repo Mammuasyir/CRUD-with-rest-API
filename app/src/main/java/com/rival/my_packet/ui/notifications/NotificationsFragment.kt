@@ -43,6 +43,7 @@ class NotificationsFragment : Fragment() {
 
         btnKeluar.setOnClickListener {
             sph.setStatusLogin(false)
+            sph.deleteUser()
             Toast.makeText(activity, "Anda Berhasil Keluar", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, WelcomeActivity::class.java))
             activity?.finish()

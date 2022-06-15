@@ -38,4 +38,9 @@ class SharedPreference(activity: FragmentActivity){
         return Gson().fromJson<DataUser>(data, DataUser::class.java)
     }
 
+    //delete data user
+    fun deleteUser(){
+        sharedPreference.edit().remove(user).apply()
+    }
+
 }

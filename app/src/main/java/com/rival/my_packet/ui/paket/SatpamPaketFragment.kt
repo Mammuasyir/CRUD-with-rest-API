@@ -16,6 +16,7 @@ import com.rival.my_packet.R
 import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
+import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.model.ResponsePaket
 import com.rival.my_packet.model.respon
 import kotlinx.android.synthetic.main.create_paket.*
@@ -29,6 +30,8 @@ import retrofit2.Response
 class SatpamPaketFragment : Fragment() {
     private var _binding: FragmentSatpamPaketBinding? = null
     lateinit var rvSatpam: RecyclerView
+    lateinit var roleUser : TextView
+    lateinit var sph : SharedPreference
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -39,8 +42,23 @@ class SatpamPaketFragment : Fragment() {
         _binding = FragmentSatpamPaketBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        sph = SharedPreference(requireActivity())
+
         rvSatpam = binding.rvSatpam
         getPaketSatpam()
+
+
+        val user = sph.getUser()
+        if (user?.role != null) {
+            if (user.role == "Admin"){
+                binding.fab.visibility = View.VISIBLE
+            } else {
+               binding.fab.visibility = View.GONE
+            }
+        }  else {
+            binding.fab.visibility = View.GONE
+        }
+
 
         binding.fab.setOnClickListener {
             addPaket()
