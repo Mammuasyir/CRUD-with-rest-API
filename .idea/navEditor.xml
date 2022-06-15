@@ -44,21 +44,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-<<<<<<< HEAD
-=======
                   <entry key="welcomeFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="259" />
-                            <option name="y" value="370" />
+                            <option name="x" value="256" />
+                            <option name="y" value="368" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
->>>>>>> origin/main
                 </map>
               </option>
             </LayoutPositions>

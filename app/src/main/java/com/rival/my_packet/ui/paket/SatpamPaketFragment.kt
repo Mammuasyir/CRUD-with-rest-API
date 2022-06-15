@@ -133,10 +133,6 @@ class SatpamPaketFragment : Fragment() {
         getPaketSatpam()
     }
 
-    fun onRefresh() {
-        getPaketSatpam()
-    }
-
 
     private fun getPaketSatpam() {
         ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {

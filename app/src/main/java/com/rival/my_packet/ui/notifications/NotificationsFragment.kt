@@ -10,9 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.rival.my_packet.MainActivity
 import com.rival.my_packet.R
-import com.rival.my_packet.UpdatePasswordActivity
-import com.rival.my_packet.WelcomeActivity
+
 import com.rival.my_packet.helper.SharedPreference
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
@@ -45,7 +45,7 @@ class NotificationsFragment : Fragment() {
             sph.setStatusLogin(false)
             sph.deleteUser()
             Toast.makeText(activity, "Anda Berhasil Keluar", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(activity, WelcomeActivity::class.java))
+            startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         }
 

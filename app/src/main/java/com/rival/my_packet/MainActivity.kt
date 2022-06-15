@@ -17,6 +17,7 @@ import com.rival.my_packet.databinding.ActivityMainBinding
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.ui.dashboard.DashboardFragment
 import com.rival.my_packet.ui.home.HomeFragment
+import com.rival.my_packet.ui.notifications.LoginFragment
 import com.rival.my_packet.ui.notifications.NotificationsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     val fragmentHome: Fragment = HomeFragment()
     val fragmentDashboard: Fragment = DashboardFragment()
     val fragmentAccount: Fragment = NotificationsFragment()
+    val fragmentLogin: Fragment = LoginFragment()
     val fm: FragmentManager = supportFragmentManager
     var active: Fragment = fragmentHome
 
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.container, fragmentHome).show(fragmentHome).commit()
         fm.beginTransaction().add(R.id.container, fragmentDashboard).hide(fragmentDashboard).commit()
         fm.beginTransaction().add(R.id.container, fragmentAccount).hide(fragmentAccount).commit()
+        fm.beginTransaction().add(R.id.container, fragmentLogin).hide(fragmentLogin).commit()
 
 //        bottomNavigationView = findViewById(R.id.nav_view)
         bottomNavigationView = binding.navView
@@ -75,8 +78,7 @@ class MainActivity : AppCompatActivity() {
                     if (sPH.getStatusLogin()){
                         callFragment(2, fragmentAccount)
                     }else{
-                        val i = Intent(this, WelcomeActivity::class.java)
-                        startActivity(i)
+                       callFragment(2, fragmentLogin)
 //                        Toast.makeText(this,"Login Dulu !", Toast.LENGTH_SHORT).show()
                     }
 
