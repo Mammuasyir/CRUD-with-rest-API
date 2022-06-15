@@ -7,19 +7,35 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_landing"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        tools:listitem="@layout/item_list_landing" />
+        android:layout_height="665dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_landing2"
-        android:layout_below="@id/rv_landing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_list_landing" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_landing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:listitem="@layout/item_list_landing" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_landing2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_landing"
+                tools:listitem="@layout/item_list_landing" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 
 
 </RelativeLayout>
