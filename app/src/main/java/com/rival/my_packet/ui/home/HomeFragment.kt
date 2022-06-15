@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.my_packet.adapter.Landing2Adapter
-import com.rival.my_packet.adapter.LandingAdapter
+import com.rival.my_packet.adapter.landing.Landing2Adapter
+import com.rival.my_packet.adapter.landing.LandingAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentHomeBinding
 import com.rival.my_packet.model.ResponseLanding

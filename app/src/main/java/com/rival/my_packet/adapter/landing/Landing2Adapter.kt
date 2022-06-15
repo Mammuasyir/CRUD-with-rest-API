@@ -1,6 +1,5 @@
-package com.rival.my_packet.adapter
+package com.rival.my_packet.adapter.landing
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

@@ -50,7 +50,7 @@ class SatpamPaketFragment : Fragment() {
 
         val user = sph.getUser()
         if (user?.role != null) {
-            if (user.role == "Admin"){
+            if (user.role != "Musyrif") {
                 binding.fab.visibility = View.VISIBLE
             } else {
                binding.fab.visibility = View.GONE

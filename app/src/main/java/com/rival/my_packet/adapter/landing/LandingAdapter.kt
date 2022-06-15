@@ -1,10 +1,5 @@
-package com.rival.my_packet.adapter
+package com.rival.my_packet.adapter.landing
 
-import android.app.Activity
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rival.my_packet.R
-import com.rival.my_packet.model.PaketItem
-import com.rival.my_packet.model.PaketselesaiItem
 import com.rival.my_packet.model.Result
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class LandingAdapter(var landingItem: Result?) :
     RecyclerView.Adapter<LandingAdapter.MyViewHolder>() {
