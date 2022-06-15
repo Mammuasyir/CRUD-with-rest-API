@@ -27,6 +27,9 @@ interface ApiServices {
         @Field("password")  password: String
     ):Call<ResponseUser>
 
+
+
+
     @GET("landing")
     fun getlanding(): Call<ResponseLanding>
 

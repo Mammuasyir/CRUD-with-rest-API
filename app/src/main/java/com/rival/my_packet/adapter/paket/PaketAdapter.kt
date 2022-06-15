@@ -9,16 +9,20 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rival.my_packet.R
+import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.model.ResultItem
 
-class PaketAdapter(var paket: List<ResultItem?>?) : RecyclerView.Adapter<PaketAdapter.MyViewHolder>()  {
+class PaketAdapter(var paket: List<ResultItem?>? = listOf()) : RecyclerView.Adapter<PaketAdapter.MyViewHolder>()  {
+    lateinit var sph : SharedPreference
     class MyViewHolder (val view:View) : RecyclerView.ViewHolder(view) {
 
         val tvTitle = view.findViewById<TextView>(R.id.txt_title)
         val btnDetail = view.findViewById<ImageButton>(R.id.btn_detail)
+        val btnDelete = view.findViewById<ImageButton>(R.id.btn_delete)
 
 
     }
@@ -33,6 +37,19 @@ class PaketAdapter(var paket: List<ResultItem?>?) : RecyclerView.Adapter<PaketAd
         val context = holder.itemView.context
         val data = paket?.get(position)
         holder.tvTitle.text = data?.nama_penerima
+
+// hide button detail
+//        sph = SharedPreference(context as FragmentActivity)
+//        val user = sph.getUser()
+//        if (user?.role != "Musyrif") {
+//            holder.btnDelete.visibility = View.VISIBLE
+//        } else {
+//            holder.btnDelete.visibility = View.GONE
+//        }
+
+
+
+
 
         holder.btnDetail.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context).create()
@@ -59,4 +76,9 @@ class PaketAdapter(var paket: List<ResultItem?>?) : RecyclerView.Adapter<PaketAd
     }
 
     override fun getItemCount() = paket?.size ?: 0
+
+    fun clearData() {
+        listOf(paket)
+        notifyDataSetChanged()
+    }
 }

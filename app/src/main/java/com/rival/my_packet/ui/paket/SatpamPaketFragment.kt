@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -22,6 +23,8 @@ import com.rival.my_packet.model.respon
 import kotlinx.android.synthetic.main.create_paket.*
 import kotlinx.android.synthetic.main.create_paket.view.*
 import kotlinx.android.synthetic.main.fragment_satpam_paket.*
+import kotlinx.android.synthetic.main.item_satpam.*
+import kotlinx.android.synthetic.main.item_satpam.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +43,8 @@ class SatpamPaketFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSatpamPaketBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+
+
 
         sph = SharedPreference(requireActivity())
 
@@ -49,14 +53,20 @@ class SatpamPaketFragment : Fragment() {
 
 
         val user = sph.getUser()
+
+        val del = rvSatpam.findViewById<ImageButton>(R.id.btn_delete)
         if (user?.role != null) {
             if (user.role != "Musyrif") {
                 binding.fab.visibility = View.VISIBLE
+                del?.visibility = View.VISIBLE
             } else {
                binding.fab.visibility = View.GONE
+
+                del?.visibility = View.GONE
             }
         }  else {
             binding.fab.visibility = View.GONE
+            del?.visibility = View.GONE
         }
 
 
@@ -64,7 +74,7 @@ class SatpamPaketFragment : Fragment() {
             addPaket()
         }
 
-        return root
+        return binding.root
     }
 
     private fun addPaket() {
@@ -152,6 +162,7 @@ class SatpamPaketFragment : Fragment() {
                             LinearLayoutManager.VERTICAL
                         landingAdapter.notifyDataSetChanged()
                         adapter = landingAdapter
+
                     }
                 }
             }

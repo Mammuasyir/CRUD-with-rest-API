@@ -67,13 +67,17 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId){
                 R.id.navigation_home -> {
                     callFragment(0, fragmentHome)
+                    onRestart()
+
                 }
 
                 R.id.navigation_dashboard -> {
                     callFragment(1, fragmentDashboard)
+                    onRestart()
                 }
 
                 R.id.navigation_notifications -> {
+                    onRestart()
 
                     if (sPH.getStatusLogin()){
                         callFragment(2, fragmentAccount)

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rival.my_packet.adapter.landing.Landing2Adapter
 import com.rival.my_packet.adapter.landing.LandingAdapter
 import com.rival.my_packet.api.ApiConfig
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     lateinit var rvLanding: RecyclerView
     lateinit var rvLanding2: RecyclerView
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,6 +40,12 @@ class HomeFragment : Fragment() {
         rvLanding = binding.rvLanding
         rvLanding2 = binding.rvLanding2
 
+        swipeRefresh = binding.swipeRefreshLayout
+        swipeRefresh.setOnRefreshListener {
+            getLanding()
+            getLanding2()
+        }
+
         getLanding()
         getLanding2()
 
@@ -52,6 +60,9 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseLanding>,
                 response: Response<ResponseLanding>
             ) {
+                if (swipeRefresh.isRefreshing){
+                    swipeRefresh.isRefreshing = false
+                }
                 if (response.isSuccessful) {
                     val responseLanding =
                         response.body() as ResponseLanding
@@ -81,6 +92,9 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseLanding>,
                 response: Response<ResponseLanding>
             ) {
+                if (swipeRefresh.isRefreshing){
+                    swipeRefresh.isRefreshing = false
+                }
                 if (response.isSuccessful) {
                     val responseLanding =
                         response.body() as ResponseLanding
