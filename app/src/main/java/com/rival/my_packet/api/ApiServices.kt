@@ -51,6 +51,6 @@ interface ApiServices {
         @Field("nama_penerima")  nama_penerima: String,
         @Field("ekspedisi")  ekspedisi: String,
         @Field("status")  status: String,
-        //@Field("img")  img: String
+//        @Field("img")  img: String
     ):Call<respon>
 }

@@ -1,6 +1,11 @@
 package com.rival.my_packet.ui.paket
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +38,8 @@ import retrofit2.Response
 class SatpamPaketFragment : Fragment() {
     private var _binding: FragmentSatpamPaketBinding? = null
     lateinit var rvSatpam: RecyclerView
-    lateinit var roleUser : TextView
-    lateinit var sph : SharedPreference
+    lateinit var roleUser: TextView
+    lateinit var sph: SharedPreference
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -60,11 +65,11 @@ class SatpamPaketFragment : Fragment() {
                 binding.fab.visibility = View.VISIBLE
                 del?.visibility = View.VISIBLE
             } else {
-               binding.fab.visibility = View.GONE
+                binding.fab.visibility = View.GONE
 
                 del?.visibility = View.GONE
             }
-        }  else {
+        } else {
             binding.fab.visibility = View.GONE
             del?.visibility = View.GONE
         }
@@ -90,13 +95,28 @@ class SatpamPaketFragment : Fragment() {
         val status = views.findViewById<TextView>(R.id.txt_status)
         val gambar = views.findViewById<Button>(R.id.btn_input_image)
 
+        gambar.setOnClickListener {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
+                startActivityForResult(takePictureIntent, 100)
+            } else {
+                Toast.makeText(requireActivity(), "Tidak Dapat Membuka Kamera", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+
+        }
+
+
+
         add.setOnClickListener {
-            val nama = namaPenerima.text.toString() 
+            val nama = namaPenerima.text.toString()
             val eks = ekspedisi.text.toString()
             val stat = status.text.toString()
-            //val gambar = gambar.text.toString()
+            val img = gambar.text.toString()
 
-           if (nama.isEmpty()) {
+            if (nama.isEmpty()) {
                 namaPenerima.error = "Nama Penerima tidak boleh kosong"
                 namaPenerima.requestFocus()
                 return@setOnClickListener
@@ -115,34 +135,45 @@ class SatpamPaketFragment : Fragment() {
             ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat)
                 .enqueue(object : Callback<respon> {
                     override fun onResponse(call: Call<respon>, response: Response<respon>) {
-                      var response = response.body()
+                        var response = response.body()
                         if (response != null) {
                             progressbar.visibility = View.VISIBLE
                             if (response.status == 1) {
-                                Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
+                                    .show()
                                 alertDialog.dismiss()
                                 progressbar.visibility = View.GONE
                                 activity?.let { getPaketSatpam() }
                             } else {
-                                Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }
 
                     override fun onFailure(call: Call<respon>, t: Throwable) {
-                        Toast.makeText(context, "Tidak Ada Koneksi Internet", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Tidak Ada Koneksi Internet", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 })
-
         }
         alertDialog.show()
     }
 
-    override fun onResume() {
-        super.onResume()
-        getPaketSatpam()
-    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            val bitmap = data?.extras?.get("data") as Bitmap
+            val gambarzz = bitmap.toString()
+            btn_input_image.text = gambarzz
+
+            
+
+
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 
     private fun getPaketSatpam() {
         ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
