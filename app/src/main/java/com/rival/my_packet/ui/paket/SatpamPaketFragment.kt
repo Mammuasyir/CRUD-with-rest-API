@@ -167,7 +167,7 @@ class SatpamPaketFragment : Fragment() {
             val gambarzz = bitmap.toString()
             btn_input_image.text = gambarzz
 
-            
+
 
 
         } else {

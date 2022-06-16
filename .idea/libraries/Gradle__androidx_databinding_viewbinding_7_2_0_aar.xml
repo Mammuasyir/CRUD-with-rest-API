@@ -5,6 +5,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/353a7617eb9e190bb37140a8b498d164/transformed/viewbinding-7.2.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/353a7617eb9e190bb37140a8b498d164/transformed/viewbinding-7.2.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/353a7617eb9e190bb37140a8b498d164/transformed/viewbinding-7.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5d09dea7b3c1481ebd458a174f426b0f/transformed/viewbinding-7.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5d09dea7b3c1481ebd458a174f426b0f/transformed/viewbinding-7.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5d09dea7b3c1481ebd458a174f426b0f/transformed/viewbinding-7.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
