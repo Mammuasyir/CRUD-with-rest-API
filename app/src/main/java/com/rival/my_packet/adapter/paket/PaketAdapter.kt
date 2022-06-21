@@ -22,10 +22,12 @@ import retrofit2.Response
 class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
     RecyclerView.Adapter<PaketAdapter.MyViewHolder>() {
     lateinit var sph: SharedPreference
+    lateinit var statusList: Spinner
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val tvTitle = view.findViewById<TextView>(R.id.txt_title)
+        val btnEdit = view.findViewById<ImageButton>(R.id.btn_edit)
         val btnDetail = view.findViewById<ImageButton>(R.id.btn_detail)
         val btnDelete = view.findViewById<ImageButton>(R.id.btn_delete)
 
@@ -54,6 +56,33 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
 //        } else {
 //            holder.btnDelete.visibility = View.GONE
 //        }
+
+        holder.btnEdit.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(context).create()
+            val views = LayoutInflater.from(context).inflate(R.layout.edit_dialog, null)
+            alertDialog.setView(views)
+            alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            alertDialog.setCancelable(false)
+
+            val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
+            val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
+            statusList = views.findViewById<Spinner>(R.id.status_paket)
+            var pengambil = views.findViewById<EditText>(R.id.edt_pengambil_paket)
+
+            nama.text = data?.nama_penerima
+            tanggal.text = data?.tanggal_input
+            statusList.adapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_dropdown_item,
+                arrayOf("Satpam", "Musyrif", "Selesai")
+            )
+            pengambil.setText(data?.penerima_paket)
+
+            views.findViewById<Button>(R.id.btn_close).setOnClickListener {
+                alertDialog.dismiss()
+            }
+            alertDialog.show()
+        }
 
         holder.btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(context)
@@ -91,7 +120,6 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             }
             builder.show()
         }
-
 
 
         holder.btnDetail.setOnClickListener {
