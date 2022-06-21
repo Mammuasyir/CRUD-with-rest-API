@@ -59,12 +59,13 @@
                     android:hint="Gambar Bukti"
                     android:layout_marginTop="10dp"/>
 
-                <EditText
-                    android:id="@+id/txt_status"
+                <Spinner
+                    android:id="@+id/status_paket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Status"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="20dp"
+                    android:entries="@array/Status"
+                    />
 
                 <Button
                     android:id="@+id/btn_add"

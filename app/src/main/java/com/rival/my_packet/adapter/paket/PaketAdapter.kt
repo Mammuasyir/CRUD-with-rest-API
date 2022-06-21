@@ -15,6 +15,7 @@ import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.model.ResponsePaket
 import com.rival.my_packet.model.ResultItem
+import com.rival.my_packet.model.respon
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,18 +66,43 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             alertDialog.setCancelable(false)
 
             val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
-            val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
+            val tanggal = views.findViewById<TextView>(R.id.tv_tanggal_dtl)
             statusList = views.findViewById<Spinner>(R.id.status_paket)
             var pengambil = views.findViewById<EditText>(R.id.edt_pengambil_paket)
+            val update = views.findViewById<Button>(R.id.btn_update)
 
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
-            statusList.adapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_dropdown_item,
-                arrayOf("Satpam", "Musyrif", "Selesai")
-            )
-            pengambil.setText(data?.penerima_paket)
+//            statusList.setSelection(data?.status!!)
+//            pengambil.setText(data?.penerima_paket)
+
+            update.setOnClickListener {
+                val status = statusList.selectedItem.toString()
+                val pengambil = pengambil.text.toString()
+
+                ApiConfig.instanceRetrofit.updatePaket(
+                    data?.id!!,
+                    status,
+                    pengambil
+                ).enqueue(object : Callback<respon> {
+                    override fun onFailure(call: Call<respon>, t: Throwable) {
+                        Toast.makeText(context, t.localizedMessage, Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<respon>,
+                        response: Response<respon>
+                    ) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show()
+                            alertDialog.dismiss()
+
+                        } else {
+                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+            }
 
             views.findViewById<Button>(R.id.btn_close).setOnClickListener {
                 alertDialog.dismiss()
@@ -112,7 +138,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                     }
 
                     override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
-                        Toast.makeText(context, "Gagal hapus paket", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, t.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 })
             }

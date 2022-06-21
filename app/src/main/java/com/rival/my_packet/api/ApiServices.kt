@@ -54,6 +54,14 @@ interface ApiServices {
 //        @Field("img")  img: String
     ): Call<respon>
 
+    @FormUrlEncoded
+    @POST("paket-update/{id}")
+    fun updatePaket(
+        @Path("id") id: Int,
+        @Field("status") status: String,
+        @Field("penerima_paket") penerima_paket: String,
+    ): Call<respon>
+
     @DELETE("paket-delete/{id}")
     fun deletePaket(
         @Path("id") id: Int

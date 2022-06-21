@@ -98,8 +98,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <array name="Status">
-        <item>Pos Satpam</item>
-        <item>Musyrif</item>
-        <item>Selesai</item>
+        <item>satpam</item>
+        <item>musyrif</item>
+        <item>selesai</item>
     </array>
 </resources>

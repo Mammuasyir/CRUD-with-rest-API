@@ -9,9 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -43,7 +41,9 @@ class SatpamPaketFragment : Fragment() {
     lateinit var sph: SharedPreference
     lateinit var imgUri: Uri
     lateinit var swipeRefresh: SwipeRefreshLayout
+    lateinit var statusList: Spinner
     var path: String? = null
+
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -102,7 +102,7 @@ class SatpamPaketFragment : Fragment() {
         val add = views.findViewById<Button>(R.id.btn_add)
         val namaPenerima = views.findViewById<TextView>(R.id.txt_nama_penerima)
         val ekspedisi = views.findViewById<TextView>(R.id.txt_ekspedisi)
-        val status = views.findViewById<TextView>(R.id.txt_status)
+        statusList = views.findViewById<Spinner>(R.id.status_paket)
         val gambar = views.findViewById<Button>(R.id.btn_input_image)
 
         gambar.setOnClickListener {
@@ -112,7 +112,12 @@ class SatpamPaketFragment : Fragment() {
         add.setOnClickListener {
             val nama = namaPenerima.text.toString()
             val eks = ekspedisi.text.toString()
-            val stat = status.text.toString()
+//            statusList.adapter = ArrayAdapter(
+//                requireContext(),
+//                android.R.layout.simple_spinner_dropdown_item,
+//                arrayOf("Satpam", "Musyrif", "Selesai")
+//            )
+            val status = statusList.selectedItem.toString()
 
 
 
@@ -127,13 +132,11 @@ class SatpamPaketFragment : Fragment() {
                 ekspedisi.requestFocus()
                 return@setOnClickListener
             }
-            if (stat.isEmpty()) {
-                status.error = "Status tidak boleh kosong"
-                status.requestFocus()
+            if (status.isEmpty()) {
                 return@setOnClickListener
             }
 
-            ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat )
+            ApiConfig.instanceRetrofit.inputPaket(nama, eks, status )
                 .enqueue(object : Callback<respon> {
                     override fun onResponse(call: Call<respon>, response: Response<respon>) {
                         var response = response.body()
