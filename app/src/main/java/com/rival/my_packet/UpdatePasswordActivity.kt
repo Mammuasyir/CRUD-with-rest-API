@@ -53,27 +53,42 @@ class UpdatePasswordActivity : AppCompatActivity() {
                 "Konfirmasi Password Tidak Boleh Sama Dengan Password Lama"
         } else {
             val user = sph.getUser()
-            user?.id?.let { ApiConfig.instanceRetrofit.changePassword(it, oldPass, newPass).enqueue(object : Callback<ResponseUser>{
-                override fun onResponse(
-                    call: Call<ResponseUser>,
-                    response: Response<ResponseUser>
-                ) {
-                    val body = response.body()
-                    if (response.isSuccessful) {
-                       if (body?.status == 1) {
-                           Toast.makeText(this@UpdatePasswordActivity, "${body.pesan}", Toast.LENGTH_SHORT).show()
-                           finish()
-                       }
+            user?.id?.let {
+                ApiConfig.instanceRetrofit.changePassword(it, oldPass, newPass)
+                    .enqueue(object : Callback<ResponseUser> {
+                        override fun onResponse(
+                            call: Call<ResponseUser>,
+                            response: Response<ResponseUser>
+                        ) {
+                            val body = response.body()
+                            if (response.isSuccessful) {
+                                if (body?.status == 1) {
+                                    Toast.makeText(
+                                        this@UpdatePasswordActivity,
+                                        "${body.pesan}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    finish()
+                                }
 
-                    } else {
-                        Toast.makeText(this@UpdatePasswordActivity, "Password Salah", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                            } else {
+                                Toast.makeText(
+                                    this@UpdatePasswordActivity,
+                                    "Password Salah",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
 
-                override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
-                    Toast.makeText(this@UpdatePasswordActivity, t.message, Toast.LENGTH_SHORT).show()
-                }
-            }) }
+                        override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
+                            Toast.makeText(
+                                this@UpdatePasswordActivity,
+                                t.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+            }
 
         }
 

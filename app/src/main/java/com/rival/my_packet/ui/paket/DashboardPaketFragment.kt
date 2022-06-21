@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rival.my_packet.R
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentDashboardPaketBinding
@@ -18,6 +19,7 @@ import retrofit2.Response
 class DashboardPaketFragment : Fragment() {
     private var _binding: FragmentDashboardPaketBinding? = null
     private val binding get() = _binding!!
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +28,10 @@ class DashboardPaketFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentDashboardPaketBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        swipeRefresh = binding.swipeRefreshLayout
+        swipeRefresh.setOnRefreshListener {
+            getData()
+        }
         getData()
 
         return root
@@ -38,6 +43,9 @@ class DashboardPaketFragment : Fragment() {
                 call: Call<ResponseDashboard>,
                 response: Response<ResponseDashboard>
             ) {
+                if (swipeRefresh.isRefreshing){
+                    swipeRefresh.isRefreshing = false
+                }
                 val data = response.body()?.result
                 binding.tvTotal.text = data?.totalPaketHariIni.toString()
                 binding.tvSatpam.text = data?.totalPaketSatpam.toString()
@@ -48,6 +56,7 @@ class DashboardPaketFragment : Fragment() {
 
             override fun onFailure(call: Call<ResponseDashboard>, t: Throwable) {
                 Toast.makeText(context, t.localizedMessage, Toast.LENGTH_SHORT).show()
+                swipeRefresh.isRefreshing = false
             }
 
         })

@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rival.my_packet.R
 import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
@@ -41,6 +42,7 @@ class SatpamPaketFragment : Fragment() {
     lateinit var roleUser: TextView
     lateinit var sph: SharedPreference
     lateinit var imgUri: Uri
+    lateinit var swipeRefresh: SwipeRefreshLayout
     var path: String? = null
 
     private val binding get() = _binding!!
@@ -51,6 +53,7 @@ class SatpamPaketFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSatpamPaketBinding.inflate(inflater, container, false)
 
+        swipeRefresh = binding.swipeRefreshLayout
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(android.Manifest.permission.CAMERA),
@@ -70,20 +73,19 @@ class SatpamPaketFragment : Fragment() {
         if (user?.role != null) {
             if (user.role != "Musyrif") {
                 binding.fab.visibility = View.VISIBLE
-
             } else {
                 binding.fab.visibility = View.GONE
-
-
             }
         } else {
             binding.fab.visibility = View.GONE
-
         }
 
 
         binding.fab.setOnClickListener {
             addPaket()
+        }
+        swipeRefresh.setOnRefreshListener {
+            getPaketSatpam()
         }
 
 
@@ -105,14 +107,8 @@ class SatpamPaketFragment : Fragment() {
 
         gambar.setOnClickListener {
             val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
             startActivityForResult(i, 0)
-
-
         }
-
-
-
         add.setOnClickListener {
             val nama = namaPenerima.text.toString()
             val eks = ekspedisi.text.toString()
@@ -142,6 +138,9 @@ class SatpamPaketFragment : Fragment() {
                     override fun onResponse(call: Call<respon>, response: Response<respon>) {
                         var response = response.body()
                         if (response != null) {
+                            if (swipeRefresh.isRefreshing){
+                                swipeRefresh.isRefreshing = false
+                            }
                             progressbar.visibility = View.VISIBLE
                             if (response.status == 1) {
                                 Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
@@ -159,6 +158,7 @@ class SatpamPaketFragment : Fragment() {
                     override fun onFailure(call: Call<respon>, t: Throwable) {
                         Toast.makeText(context, "Tidak Ada Koneksi Internet", Toast.LENGTH_SHORT)
                             .show()
+                        swipeRefresh.isRefreshing = false
                     }
                 })
         }
@@ -181,6 +181,9 @@ class SatpamPaketFragment : Fragment() {
                 call: Call<ResponsePaket>,
                 response: Response<ResponsePaket>
             ) {
+                if (swipeRefresh.isRefreshing){
+                    swipeRefresh.isRefreshing = false
+                }
                 if (response.isSuccessful) {
                     val ResponsePaket =
                         response.body() as ResponsePaket
@@ -200,6 +203,7 @@ class SatpamPaketFragment : Fragment() {
 
             override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
                 Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
+                swipeRefresh.isRefreshing = false
             }
         })
     }
