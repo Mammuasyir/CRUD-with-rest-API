@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.rival.my_packet.MainActivity
 import com.rival.my_packet.R
+import com.rival.my_packet.UpdatePasswordActivity
 
 import com.rival.my_packet.helper.SharedPreference
 import kotlinx.android.synthetic.main.fragment_notifications.*
@@ -20,7 +19,7 @@ class NotificationsFragment : Fragment() {
 
     lateinit var sph : SharedPreference
     lateinit var btnKeluar : TextView
-    lateinit var btnUpdatePassword : TextView
+    lateinit var btnUpdatePassword : RelativeLayout
     lateinit var namaUser : TextView
     lateinit var emailUser : TextView
     lateinit var roleUser : TextView
@@ -49,6 +48,11 @@ class NotificationsFragment : Fragment() {
             activity?.finish()
         }
 
+        btnUpdatePassword.setOnClickListener {
+            val i= Intent(context, UpdatePasswordActivity::class.java)
+            startActivity(i)
+        }
+
         setUser()
 
         return view
@@ -72,5 +76,6 @@ class NotificationsFragment : Fragment() {
         emailUser = view.findViewById<TextView>(R.id.tv_emailUser)
         roleUser = view.findViewById<TextView>(R.id.tv_roleUser)
         img = view.findViewById<ImageView>(R.id.profile_image)
+        btnUpdatePassword = view.findViewById<RelativeLayout>(R.id.btn_ubahPassword)
     }
 }

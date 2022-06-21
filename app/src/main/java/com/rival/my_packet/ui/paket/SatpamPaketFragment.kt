@@ -111,10 +111,7 @@ class SatpamPaketFragment : Fragment() {
 
         }
 
-            val image = baos.toByteArray()
-            val imageBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), image)
-            val body = MultipartBody.Part.createFormData("img", "image.jpg", imageBody)
-            path = body.toString()
+
 
         add.setOnClickListener {
             val nama = namaPenerima.text.toString()
@@ -140,7 +137,7 @@ class SatpamPaketFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat, path.toString() )
+            ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat )
                 .enqueue(object : Callback<respon> {
                     override fun onResponse(call: Call<respon>, response: Response<respon>) {
                         var response = response.body()

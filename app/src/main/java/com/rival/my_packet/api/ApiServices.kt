@@ -59,5 +59,13 @@ interface ApiServices {
         @Path("id") id: Int
     ): Call<ResponsePaket>
 
+    @FormUrlEncoded
+    @PUT("change-password/{id}")
+    fun changePassword(
+        @Path("id") id: Int,
+        @Field("password_lama") password_lama: String,
+        @Field("password_baru") password_baru: String
+    ): Call<ResponseUser>
+
 
 }
