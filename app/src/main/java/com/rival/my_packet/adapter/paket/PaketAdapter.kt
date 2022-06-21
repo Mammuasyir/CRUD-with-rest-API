@@ -70,6 +70,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                             if (response.body()?.status == 1) {
                                 Toast.makeText(context, "Berhasil hapus paket", Toast.LENGTH_SHORT)
                                     .show()
+
                                 paket?.get(position)
                                 notifyItemRemoved(paket?.indexOf(data)!!)
                                 itemCount.minus(-1)

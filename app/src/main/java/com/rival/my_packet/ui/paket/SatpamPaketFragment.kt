@@ -79,6 +79,7 @@ class SatpamPaketFragment : Fragment() {
             addPaket()
         }
 
+
         return binding.root
     }
 
@@ -166,8 +167,6 @@ class SatpamPaketFragment : Fragment() {
             val bitmap = data?.extras?.get("data") as Bitmap
             val gambarzz = bitmap.toString()
             btn_input_image.text = gambarzz
-
-
 
 
         } else {
