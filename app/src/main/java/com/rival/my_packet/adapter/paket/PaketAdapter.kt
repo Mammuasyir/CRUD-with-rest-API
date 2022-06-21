@@ -101,8 +101,9 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                                     .show()
 
                                 paket?.get(position)
-                                notifyItemRemoved(paket?.indexOf(data)!!)
-                                itemCount.minus(-1)
+                                notifyItemRemoved(position)
+                                notifyItemRangeChanged(position, itemCount + 1)
+
                             }
                         } else {
                             Toast.makeText(context, "Gagal hapus paket", Toast.LENGTH_SHORT)
