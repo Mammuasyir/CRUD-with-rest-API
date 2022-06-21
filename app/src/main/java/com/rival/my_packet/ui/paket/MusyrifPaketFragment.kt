@@ -24,6 +24,7 @@ class MusyrifPaketFragment : Fragment() {
     private var _binding: FragmentMusyrifPaketBinding? = null
     lateinit var rvMusyrif: RecyclerView
   lateinit var swipeRefresh: SwipeRefreshLayout
+  lateinit var adapter: PaketAdapter
 
     private val binding get() = _binding!!
 
@@ -59,6 +60,8 @@ class MusyrifPaketFragment : Fragment() {
                 if (swipeRefresh.isRefreshing){
                     swipeRefresh.isRefreshing = false
                 }
+
+
                 if (response.isSuccessful) {
                     val responseMusyrif =
                         response.body() as ResponsePaket
@@ -83,6 +86,10 @@ class MusyrifPaketFragment : Fragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        getPaketMusyrif()
+    }
 
 
 

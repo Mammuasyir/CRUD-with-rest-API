@@ -3,19 +3,18 @@ package com.rival.my_packet.ui.paket
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rival.my_packet.R
@@ -25,14 +24,15 @@ import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.model.ResponsePaket
 import com.rival.my_packet.model.respon
-import kotlinx.android.synthetic.main.create_paket.*
-import kotlinx.android.synthetic.main.create_paket.view.*
 import kotlinx.android.synthetic.main.fragment_satpam_paket.*
-import kotlinx.android.synthetic.main.item_satpam.*
-import kotlinx.android.synthetic.main.item_satpam.view.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class SatpamPaketFragment : Fragment() {
@@ -40,6 +40,8 @@ class SatpamPaketFragment : Fragment() {
     lateinit var rvSatpam: RecyclerView
     lateinit var roleUser: TextView
     lateinit var sph: SharedPreference
+    lateinit var imgUri: Uri
+    var path: String? = null
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -49,6 +51,11 @@ class SatpamPaketFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSatpamPaketBinding.inflate(inflater, container, false)
 
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(android.Manifest.permission.CAMERA),
+            100
+        )
 
 
         sph = SharedPreference(requireActivity())
@@ -59,19 +66,19 @@ class SatpamPaketFragment : Fragment() {
 
         val user = sph.getUser()
 
-        val del = rvSatpam.findViewById<ImageButton>(R.id.btn_delete)
+
         if (user?.role != null) {
             if (user.role != "Musyrif") {
                 binding.fab.visibility = View.VISIBLE
-                del?.visibility = View.VISIBLE
+
             } else {
                 binding.fab.visibility = View.GONE
 
-                del?.visibility = View.GONE
+
             }
         } else {
             binding.fab.visibility = View.GONE
-            del?.visibility = View.GONE
+
         }
 
 
@@ -97,25 +104,25 @@ class SatpamPaketFragment : Fragment() {
         val gambar = views.findViewById<Button>(R.id.btn_input_image)
 
         gambar.setOnClickListener {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-            if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivityForResult(takePictureIntent, 100)
-            } else {
-                Toast.makeText(requireActivity(), "Tidak Dapat Membuka Kamera", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            startActivityForResult(i, 0)
 
 
         }
 
-
+            val image = baos.toByteArray()
+            val imageBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), image)
+            val body = MultipartBody.Part.createFormData("img", "image.jpg", imageBody)
+            path = body.toString()
 
         add.setOnClickListener {
             val nama = namaPenerima.text.toString()
             val eks = ekspedisi.text.toString()
             val stat = status.text.toString()
-            val img = gambar.text.toString()
+
+
+
 
             if (nama.isEmpty()) {
                 namaPenerima.error = "Nama Penerima tidak boleh kosong"
@@ -133,7 +140,7 @@ class SatpamPaketFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat)
+            ApiConfig.instanceRetrofit.inputPaket(nama, eks, stat, path.toString() )
                 .enqueue(object : Callback<respon> {
                     override fun onResponse(call: Call<respon>, response: Response<respon>) {
                         var response = response.body()
@@ -163,14 +170,11 @@ class SatpamPaketFragment : Fragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
             val bitmap = data?.extras?.get("data") as Bitmap
-            val gambarzz = bitmap.toString()
-            btn_input_image.text = gambarzz
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 
-
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
