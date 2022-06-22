@@ -183,7 +183,6 @@
                     android:layout_weight="1"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    android:backgroundTint="@color/teal_700"
                     android:background="@drawable/btn_shape"
                     android:text="Update" />
 

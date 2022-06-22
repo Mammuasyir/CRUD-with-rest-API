@@ -35,21 +35,21 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="Satpam"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_satpam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="30sp"
                         android:layout_marginLeft="68sp"
+                        android:layout_marginBottom="30sp"
                         android:text="0"
+                        android:textColor="@color/black"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -66,8 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                app:cardCornerRadius="18dp"
                 app:cardBackgroundColor="#00000000"
+                app:cardCornerRadius="18dp"
                 app:cardElevation="8dp">
 
                 <RelativeLayout
@@ -87,21 +87,21 @@
                         android:layout_alignParentRight="true"
                         android:padding="25dp"
                         android:text="Musyrif"
-                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_musyrif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="30sp"
                         android:layout_marginLeft="216sp"
+                        android:layout_marginBottom="30sp"
                         android:text="0"
+                        android:textColor="@color/white"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white" />
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -110,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                app:cardCornerRadius="18dp"
                 app:cardBackgroundColor="#00000000"
+                app:cardCornerRadius="18dp"
                 app:cardElevation="8dp">
 
                 <RelativeLayout
@@ -124,21 +124,21 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="Selesai"
-                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_selesai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="30sp"
                         android:layout_marginLeft="63sp"
+                        android:layout_marginBottom="30sp"
                         android:text="0"
+                        android:textColor="@color/white"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white" />
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="150dp"
@@ -154,7 +154,7 @@
                 android:id="@+id/cdv_4"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
-                android:layout_marginBottom="40dp">
+                android:layout_marginBottom="80dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -167,10 +167,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:padding="25dp"
-                        android:textStyle="bold"
                         android:text="Total"
                         android:textColor="@color/black"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_total"
