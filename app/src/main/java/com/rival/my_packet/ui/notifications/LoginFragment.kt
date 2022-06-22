@@ -1,5 +1,6 @@
 package com.rival.my_packet.ui.notifications
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,7 +23,10 @@ import retrofit2.Response
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
-    lateinit var sph : SharedPreference
+    lateinit var sph: SharedPreference
+    val progressDialog: ProgressDialog by lazy {
+        ProgressDialog(context)
+    }
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -33,7 +37,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         sph = SharedPreference(requireActivity())
 
-       binding.btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             login()
         }
 
@@ -44,36 +48,46 @@ class LoginFragment : Fragment() {
         val email = binding.edtLoginEmail.text.toString()
         val pass = binding.edtLoginPass.text.toString()
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             binding.edtLoginEmail.error = "Isi dulu !"
             return
         }
 
-        if (pass.isEmpty()){
+        if (pass.isEmpty()) {
             binding.edtLoginPass.error = "Isi dulu !"
             return
         }
 
+        progressDialog.setMessage("Loading...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+
         ApiConfig.instanceRetrofit.login(email, pass)
             .enqueue(object : Callback<ResponseUser> {
-                override fun onResponse(call: Call<ResponseUser>, response: Response<ResponseUser>) {
+                override fun onResponse(
+                    call: Call<ResponseUser>,
+                    response: Response<ResponseUser>
+                ) {
 
                     val respon = response.body()
-
-                    if (respon != null) {
-                        if (respon.status == 0) {
-                            Toast.makeText(activity, respon.pesan, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
+                    if (response.isSuccessful) {
+                        if (respon?.status == 0) {
+                            Toast.makeText(activity, "${respon.pesan}", Toast.LENGTH_SHORT).show()
                         } else {
 
                             sph.setStatusLogin(true)
-                            sph.setUser(respon.result!!)
+                            sph.setUser(respon?.result!!)
 
                             startActivity(Intent(activity, MainActivity::class.java))
-                            Toast.makeText(activity, respon.pesan, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, respon?.pesan, Toast.LENGTH_SHORT).show()
                             activity?.finish()
                         }
-                    }
 
+                    } else {
+                        Toast.makeText(activity, "Password Salah", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 override fun onFailure(call: Call<ResponseUser>, t: Throwable) {

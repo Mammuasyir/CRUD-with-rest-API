@@ -18,7 +18,6 @@
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable-v24/ic_baseline_search_24.xml" value="0.131" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable-v24/ic_baseline_shopping_cart_24.xml" value="0.131" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable/btn_shape.xml" value="0.131" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable/button_shape.xml" value="0.17" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.131" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable/ic_boxes.xml" value="0.131" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/drawable/ic_button_nav.xml" value="0.131" />
@@ -37,9 +36,8 @@
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/detail_dialog.xml" value="0.33078101071975496" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/edit_dialog.xml" value="0.25" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard_paket.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_dashboard_paket.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_home.xml" value="0.18" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_login.xml" value="0.17391304347826086" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_musyrif_paket.xml" value="0.25" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_satpam_paket.xml" value="0.22" />
@@ -47,7 +45,7 @@
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/fragment_welcome.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/item_list_landing.xml" value="0.22" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/item_satpam.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/test.xml" value="0.3018867924528302" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/test.xml" value="0.2524271844660194" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/menu/menu_detail.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_button_nav.xml" value="0.1565" />
