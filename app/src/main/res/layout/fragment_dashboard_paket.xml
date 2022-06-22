@@ -1,180 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="@color/lightWhite"
     tools:context=".ui.paket.DashboardPaketFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_1"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/abu"
-            app:cardCornerRadius="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/cdv_1"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="30dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_bk2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="25dp"
+                        android:text="Satpam"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/tv_satpam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30sp"
+                        android:layout_marginLeft="68sp"
+                        android:text="0"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="-40dp"
+                    android:src="@drawable/satpam" />
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdv_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="20dp"
+                app:cardCornerRadius="18dp"
+                app:cardBackgroundColor="#00000000"
+                app:cardElevation="8dp">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="13dp"
-                    android:text="Satpam"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:layout_height="150dp"
+                    android:background="@drawable/food_back">
 
-                <TextView
-                    android:id="@+id/tv_satpam"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:text="0"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/asrama" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:padding="25dp"
+                        android:text="Musyrif"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
 
+                    <TextView
+                        android:id="@+id/tv_musyrif"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30sp"
+                        android:layout_marginLeft="276sp"
+                        android:text="0"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_2"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:layout_below="@id/cdv_1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/abu"
-            app:cardCornerRadius="15dp">
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdv_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="20dp"
+                app:cardCornerRadius="18dp"
+                app:cardBackgroundColor="#00000000"
+                app:cardElevation="8dp">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="13dp"
-                    android:text="Musyrif"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:layout_height="150dp"
+                    android:background="@drawable/round_bk3">
 
-                <TextView
-                    android:id="@+id/tv_musyrif"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:text="0"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="25dp"
+                        android:text="Selesai"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30sp"
+                        android:layout_marginLeft="63sp"
+                        android:text="0"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white" />
 
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="-1dp"
+                        android:src="@drawable/selesai" />
+                </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_3"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:layout_below="@id/cdv_2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/abu"
-            app:cardCornerRadius="15dp">
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/cdv_4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="190dp"
+                android:layout_marginBottom="30dp">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="13dp"
-                    android:text="Selesai"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_bk5">
 
-                <TextView
-                    android:id="@+id/tv_selesai"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:text="0"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:padding="25dp"
+                        android:text="Total"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30sp"
+                        android:layout_marginLeft="285sp"
+                        android:text="0"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
 
+                </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="-20dp"
+                    android:src="@drawable/paket" />
+            </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_4"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:layout_below="@id/cdv_3"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="110dp"
-            android:backgroundTint="@color/abu"
-            app:cardCornerRadius="15dp">
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+    </ScrollView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="13dp"
-                    android:text="Total"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_total"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:text="0"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
