@@ -73,13 +73,12 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
 
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
-//            statusList.setSelection(data?.status!!)
+//            statusList.selectedItem = data?.status
 //            pengambil.setText(data?.penerima_paket)
 
             update.setOnClickListener {
                 val status = statusList.selectedItem.toString()
                 val pengambil = pengambil.text.toString()
-
                 ApiConfig.instanceRetrofit.updatePaket(
                     data?.id!!,
                     status,
