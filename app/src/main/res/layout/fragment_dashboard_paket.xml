@@ -60,8 +60,8 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="-40dp"
-                    android:src="@drawable/satpam" />
+                    android:layout_marginTop="-14dp"
+                    android:src="@drawable/satpamnew" />
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView

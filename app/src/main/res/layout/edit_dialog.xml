@@ -49,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Penerima"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold"/>
@@ -57,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text="Tanggal Input"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -66,8 +66,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="Status paket"
+                        android:layout_marginBottom="10dp"
+                        android:text="Status Paket"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -75,7 +75,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text="Pengambil Paket"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -93,7 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text=": "
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -101,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text=": "
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -109,7 +109,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text=": "
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -117,7 +117,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text=": "
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -134,7 +134,7 @@
                         android:id="@+id/tv_nama_dtl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
                         android:maxLines="2"
                         android:text="Muhammad Rival"
                         android:textColor="@color/black"
@@ -145,7 +145,7 @@
                         android:id="@+id/tv_tanggal_dtl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="10dp"
                         android:text="10-Januari-2022 "
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -161,7 +161,7 @@
                     <EditText
                         android:id="@+id/edt_pengambil_paket"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -172,17 +172,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/data_1"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_below="@id/data_1">
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:id="@+id/btn_update"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:background="@drawable/btn_shape"
                     android:text="Update" />
 
@@ -190,9 +190,9 @@
                     android:id="@+id/btn_close"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:background="@drawable/btn_shape"
                     android:text="Close" />
 

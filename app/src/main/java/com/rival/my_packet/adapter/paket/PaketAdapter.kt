@@ -159,6 +159,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
             val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
+            val pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
             val UrlImage = "https://paket.siyap.co.id/storage/${data?.img}"
 
             Glide.with(context).load(UrlImage)
@@ -166,6 +167,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
             status.text = data?.status
+            pengambil.text = data?.penerima_paket
 
             views.findViewById<Button>(R.id.btn_close).setOnClickListener {
                 alertDialog.dismiss()

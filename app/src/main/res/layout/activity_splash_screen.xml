@@ -3,5 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rodhi"
+    android:background="@mipmap/ic_logo_paket"
+    android:layout_margin="100dp"
     tools:context="splashscreen.SplashScreenActivity" />
