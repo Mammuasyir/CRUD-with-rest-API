@@ -73,6 +73,8 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
 
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
+            // spiner selected
+            statusList[R.array.Status] = data?.status
 //            statusList.setSelection(data?.status!!)
 //            pengambil.setText(data?.penerima_paket)
 
@@ -166,6 +168,8 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                 .into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
+            // status from array
+
             status.text = data?.status
             pengambil.text = data?.penerima_paket
 
@@ -183,3 +187,12 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
         notifyDataSetChanged()
     }
 }
+
+private operator fun Spinner.set(status: Int, value: String?) {
+    val spinnerAdapter = adapter as ArrayAdapter<String>
+    val index = spinnerAdapter.getPosition(value)
+    setSelection(index)
+
+}
+
+
