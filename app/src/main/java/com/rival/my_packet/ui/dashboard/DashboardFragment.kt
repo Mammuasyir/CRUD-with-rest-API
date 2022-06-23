@@ -52,10 +52,12 @@ class DashboardFragment : Fragment() {
         viewPager.adapter = ViewPagerAdapter(requireActivity())
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> tab.icon = ContextCompat.getDrawable(requireActivity() ,R.drawable.ic_vector)
-                1 -> tab.icon = ContextCompat.getDrawable(requireActivity() ,R.drawable.ic_satpam)
-                2 -> tab.icon = ContextCompat.getDrawable(requireActivity() ,R.drawable.ic_musyrif)
-                3 -> tab.icon = ContextCompat.getDrawable(requireActivity() ,R.drawable.ic_selesai)
+                //0 -> tab.text = "전체"
+
+                0 -> tab.text = "Dashboard"
+                1 -> tab.text = "POS Satpam"
+                2 -> tab.text = "R. Musyrif"
+                3 -> tab.text = "Selesai"
             }
         }.attach()
     }

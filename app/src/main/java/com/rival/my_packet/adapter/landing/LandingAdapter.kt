@@ -54,12 +54,16 @@ class LandingAdapter(var landingItem: Result?) :
             val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
             val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
+            var pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
+
             val UrlImage = "https://paket.siyap.co.id/storage/${landingItem?.paket?.get(position)?.img}"
 
             Glide.with(context).load(UrlImage).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
             status.text = data?.status
+            pengambil.text = data?.penerima_paket
+
 
             views.findViewById<Button>(R.id.btn_close).setOnClickListener {
                 alertDialog.dismiss()

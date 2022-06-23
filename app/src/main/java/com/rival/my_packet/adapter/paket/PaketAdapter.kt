@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rival.my_packet.R
@@ -112,6 +111,9 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             alertDialog.show()
         }
 
+        // set onclick listener to activity detail
+
+
         holder.btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Hapus")
@@ -123,19 +125,25 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                         call: Call<ResponsePaket>,
                         response: Response<ResponsePaket>
                     ) {
+
+
+
                         if (response.isSuccessful) {
                             if (response.body()?.status == 1) {
-                                Toast.makeText(context, "Berhasil hapus paket", Toast.LENGTH_SHORT)
-                                    .show()
-
+                                Toast.makeText(
+                                    context,
+                                    "${response.body()?.pesan}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                // refresh list after delete
+                                //reload
                                 paket?.get(position)
-                                notifyItemRemoved(position)
-                                notifyItemRangeChanged(position, itemCount + 1)
+                              notifyDataSetChanged(position, paket?.size!!)
 
+                            } else {
+                                Toast.makeText(context, "Gagal hapus paket", Toast.LENGTH_SHORT)
+                                    .show()
                             }
-                        } else {
-                            Toast.makeText(context, "Gagal hapus paket", Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
 
@@ -180,19 +188,23 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
         }
     }
 
+    private fun notifyDataSetChanged(position: Int, size: Int) {
+paket?.get(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, size)
+    }
+
+
     override fun getItemCount() = paket?.size ?: 0
 
-    fun clearData() {
-        listOf(paket)
-        notifyDataSetChanged()
+    private operator fun Spinner.set(status: Int, value: String?) {
+        val spinnerAdapter = adapter as ArrayAdapter<String>
+        val index = spinnerAdapter.getPosition(value)
+        setSelection(index)
     }
 }
 
-private operator fun Spinner.set(status: Int, value: String?) {
-    val spinnerAdapter = adapter as ArrayAdapter<String>
-    val index = spinnerAdapter.getPosition(value)
-    setSelection(index)
 
-}
+
 
 

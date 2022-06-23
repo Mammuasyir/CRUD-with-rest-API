@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -47,12 +48,15 @@ class Landing2Adapter(var landingItem: Result?) : RecyclerView.Adapter<Landing2A
             val nama = views.findViewById<TextView>(R.id.tv_nama_dtl)
             val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
+            var pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
+
             val UrlImage = "https://paket.siyap.co.id/storage/${landingItem?.paketselesai?.get(position)?.img}"
 
             Glide.with(context).load(UrlImage).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = dataSelesai?.nama_penerima
             tanggal.text = dataSelesai?.tanggal_input
             status.text = dataSelesai?.status
+            pengambil.text = dataSelesai?.penerima_paket
 
             views.findViewById<Button>(R.id.btn_close).setOnClickListener {
                 alertDialog.dismiss()
