@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Create_Activity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:id="@+id/imageView"
+        android:rotation="90"
+        android:scaleType="fitXY"
+        android:background="@color/abu"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:padding="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nama_penerima"
+            android:hint="nama penerima"/>
+
+        <EditText
+            android:id="@+id/ekspedisi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ekspedisi" />
+
+        <EditText
+            android:id="@+id/status_paket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="status" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ADD"
+        android:id="@+id/btn_kirim"
+        />
+
+</LinearLayout>

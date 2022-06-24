@@ -5,6 +5,8 @@ import com.rival.my_packet.model.ResponseLanding
 import com.rival.my_packet.model.ResponsePaket
 import com.rival.my_packet.model.respon
 import com.rival.my_packet.model.user.ResponseUser
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,5 +82,13 @@ interface ApiServices {
         @Field("password_baru") password_baru: String
     ): Call<ResponseUser>
 
+    @Multipart
+    @POST("paket-input")
+    fun uploadImage(
+        @Part file: MultipartBody.Part,
+        @Part("nama_penerima") nama_penerima: RequestBody,
+        @Part("ekspedisi") ekspedisi: RequestBody,
+        @Part("status") status: RequestBody,
+    ): Call<respon>
 
 }

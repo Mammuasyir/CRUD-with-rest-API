@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
 
         getLanding()
         getLanding2()
+//search
 
 
         return root
