@@ -20,6 +20,7 @@
     <style name="buttonstyle1" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/oren_gelap</item>
         <item name="colorButtonNormal">@color/red</item>
+        <item name= "textFillColor">@color/oren</item>
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
