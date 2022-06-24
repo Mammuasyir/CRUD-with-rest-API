@@ -25,6 +25,8 @@ class UpdatePasswordActivity : AppCompatActivity() {
         binding = ActivityUpdatePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         sph = SharedPreference(this)
         val user = sph.getUser()
 

@@ -69,51 +69,12 @@ class HomeFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     if (it.isNotEmpty()) {
-                        getLandingSearch(it)
-                        getLanding2Search(it)
                     } else {
                         getLanding()
                         getLanding2()
                     }
                 }
                 return true
-            }
-
-        })
-    }
-
-    private fun getLanding2Search(it: String) {
-        ApiConfig.instanceRetrofit.getLanding2Search(it).enqueue(object : Callback<ResponseLanding> {
-            override fun onFailure(call: Call<ResponseLanding>, t: Throwable) {
-                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<ResponseLanding>, response: Response<ResponseLanding>) {
-                if (response.isSuccessful) {
-                    val data = response.body()?.result
-                    val adapter = Landing2Adapter(data)
-                    rvLanding2.adapter = adapter
-                    rvLanding2.layoutManager = LinearLayoutManager(context)
-                }
-            }
-        })
-    }
-
-    private fun getLandingSearch(it: String) {
-        ApiConfig.instanceRetrofit.getLandingSearch(it).enqueue(object : Callback<ResponseLanding> {
-            override fun onFailure(call: Call<ResponseLanding>, t: Throwable) {
-                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<ResponseLanding>, response: Response<ResponseLanding>) {
-                if (response.isSuccessful) {
-                    val data = response.body()?.result
-                    data?.let {
-                        val adapter = LandingAdapter(it)
-                        rvLanding.adapter = adapter
-                        rvLanding.layoutManager = LinearLayoutManager(context)
-                    }
-                }
             }
 
         })
@@ -186,6 +147,3 @@ class HomeFragment : Fragment() {
 
 }
 
-private fun Any.enqueue(callback: Callback<ResponseLanding>) {
-
-}

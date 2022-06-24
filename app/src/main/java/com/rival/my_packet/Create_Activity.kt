@@ -67,6 +67,8 @@ class Create_Activity : AppCompatActivity() {
         binding = ActivityCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,

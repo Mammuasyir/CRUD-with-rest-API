@@ -181,7 +181,7 @@
                     android:id="@+id/img_paket_dtl"
                     android:layout_width="180dp"
                     android:layout_height="200dp"
-
+                    android:rotation="90"
                     android:textColor="@color/black"
                     android:scaleType="fitXY"
                     android:background="@drawable/ic_launcher_background"/>

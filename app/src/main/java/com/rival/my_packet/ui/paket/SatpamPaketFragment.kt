@@ -107,91 +107,91 @@ class SatpamPaketFragment : Fragment() {
     }
 
 
-    private fun addPaket() {
-        val alertDialog = AlertDialog.Builder(requireActivity()).create()
-        val views = LayoutInflater.from(context).inflate(R.layout.create_paket, null)
-        alertDialog.setView(views)
-        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        alertDialog.setCancelable(true)
-
-        val add = views.findViewById<Button>(R.id.btn_add)
-        val namaPenerima = views.findViewById<TextView>(R.id.txt_nama_penerima)
-        val ekspedisi = views.findViewById<TextView>(R.id.txt_ekspedisi)
-        statusList = views.findViewById<Spinner>(R.id.status_paket)
-        val gambar = views.findViewById<ImageView>(R.id.img_pengiriman)
-
-
-
-
-        gambar.setOnClickListener {
-            val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(i, CAMERA_REQUEST_CODE)
-        }
-        add.setOnClickListener {
-            if (getFile != null) {
-                val file = getFile as File
-
-                val namaPenerima =
-                    namaPenerima.text.toString().toRequestBody("text/plain".toMediaType())
-                val ekspedisi = ekspedisi.text.toString().toRequestBody("text/plain".toMediaType())
-                val status =
-                    statusList.selectedItem.toString().toRequestBody("text/plain".toMediaType())
-                val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                    "img",
-                    file.name,
-                    requestImageFile
-                )
-
-
-
-                ApiConfig.instanceRetrofit.inputPaket(
-                    imageMultipart,
-                    namaPenerima,
-                    ekspedisi,
-                    status
-                ).enqueue(object :
-                    Callback<respon> {
-                    override fun onFailure(call: Call<respon>, t: Throwable) {
-                        Toast.makeText(context, "Tidak Ada Koneksi Internet", Toast.LENGTH_SHORT)
-                            .show()
-                        swipeRefresh.isRefreshing = false
-                    }
-
-                    override fun onResponse(call: Call<respon>, response: Response<respon>) {
-                        if (response.isSuccessful) {
-                            var response = response.body()
-                            if (response != null) {
-                                if (swipeRefresh.isRefreshing) {
-                                    swipeRefresh.isRefreshing = false
-                                }
-                                progressbar.visibility = View.VISIBLE
-                                if (response.status == 1) {
-                                    Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
-                                        .show()
-
-                                    activity?.let { getPaketSatpam() }
-                                } else {
-                                    Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
-                                        .show()
-                                }
-                            }
-                        } else {
-                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                })
-
-            } else {
-                Toast.makeText(
-                    activity,
-                    "Silakan masukkan berkas gambar terlebih dahulu.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-        alertDialog.show()
-    }
+//    private fun addPaket() {
+//        val alertDialog = AlertDialog.Builder(requireActivity()).create()
+//        val views = LayoutInflater.from(context).inflate(R.layout.create_paket, null)
+//        alertDialog.setView(views)
+//        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+//        alertDialog.setCancelable(true)
+//
+//        val add = views.findViewById<Button>(R.id.btn_add)
+//        val namaPenerima = views.findViewById<TextView>(R.id.txt_nama_penerima)
+//        val ekspedisi = views.findViewById<TextView>(R.id.txt_ekspedisi)
+//        statusList = views.findViewById<Spinner>(R.id.status_paket)
+//        val gambar = views.findViewById<ImageView>(R.id.img_pengiriman)
+//
+//
+//
+//
+//        gambar.setOnClickListener {
+//            val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            startActivityForResult(i, CAMERA_REQUEST_CODE)
+//        }
+//        add.setOnClickListener {
+//            if (getFile != null) {
+//                val file = getFile as File
+//
+//                val namaPenerima =
+//                    namaPenerima.text.toString().toRequestBody("text/plain".toMediaType())
+//                val ekspedisi = ekspedisi.text.toString().toRequestBody("text/plain".toMediaType())
+//                val status =
+//                    statusList.selectedItem.toString().toRequestBody("text/plain".toMediaType())
+//                val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+//                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+//                    "img",
+//                    file.name,
+//                    requestImageFile
+//                )
+//
+//
+//
+//                ApiConfig.instanceRetrofit.inputPaket(
+//                    imageMultipart,
+//                    namaPenerima,
+//                    ekspedisi,
+//                    status
+//                ).enqueue(object :
+//                    Callback<respon> {
+//                    override fun onFailure(call: Call<respon>, t: Throwable) {
+//                        Toast.makeText(context, "Tidak Ada Koneksi Internet", Toast.LENGTH_SHORT)
+//                            .show()
+//                        swipeRefresh.isRefreshing = false
+//                    }
+//
+//                    override fun onResponse(call: Call<respon>, response: Response<respon>) {
+//                        if (response.isSuccessful) {
+//                            var response = response.body()
+//                            if (response != null) {
+//                                if (swipeRefresh.isRefreshing) {
+//                                    swipeRefresh.isRefreshing = false
+//                                }
+//                                progressbar.visibility = View.VISIBLE
+//                                if (response.status == 1) {
+//                                    Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
+//                                        .show()
+//
+//                                    activity?.let { getPaketSatpam() }
+//                                } else {
+//                                    Toast.makeText(context, "${response.pesan}", Toast.LENGTH_SHORT)
+//                                        .show()
+//                                }
+//                            }
+//                        } else {
+//                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                })
+//
+//            } else {
+//                Toast.makeText(
+//                    activity,
+//                    "Silakan masukkan berkas gambar terlebih dahulu.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+//        alertDialog.show()
+//    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
