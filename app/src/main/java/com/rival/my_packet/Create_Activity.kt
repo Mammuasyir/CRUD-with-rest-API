@@ -8,6 +8,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -30,6 +31,7 @@ class Create_Activity : AppCompatActivity() {
     lateinit var binding: ActivityCreateBinding
 
     private lateinit var currentPhotoPath: String
+    lateinit var statusList: Spinner
 
     private var getFile: File? = null
 
@@ -148,7 +150,7 @@ class Create_Activity : AppCompatActivity() {
             val ekspedisi =
                 binding.ekspedisi.text.toString().toRequestBody("text/plain".toMediaType())
             val status =
-                binding.statusPaket.text.toString().toRequestBody("text/plain".toMediaType())
+                binding.statusPaket.selectedItem.toString().toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "img",
@@ -177,8 +179,7 @@ class Create_Activity : AppCompatActivity() {
                                 responseBody.pesan,
                                 Toast.LENGTH_SHORT
                             ).show()
-
-                         onBackPressed()
+                            //back to landing page
                         }
                     } else {
                         Toast.makeText(this@Create_Activity, response.message(), Toast.LENGTH_SHORT)

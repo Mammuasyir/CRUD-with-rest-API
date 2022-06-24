@@ -76,8 +76,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             tanggal.text = data?.tanggal_input
             // spiner selected
             statusList[R.array.Status] = data?.status
-//            statusList.setSelection(data?.status!!)
-//            pengambil.setText(data?.penerima_paket)
+            pengambil.setText(data?.penerima_paket)
 
             update.setOnClickListener {
                 val status = statusList.selectedItem.toString()

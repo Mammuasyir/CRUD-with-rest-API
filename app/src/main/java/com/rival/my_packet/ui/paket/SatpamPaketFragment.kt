@@ -207,7 +207,7 @@ class SatpamPaketFragment : Fragment() {
         }
     }
 
-    private fun getPaketSatpam() {
+    fun getPaketSatpam() {
         ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object : Callback<ResponsePaket> {
             override fun onResponse(
                 call: Call<ResponsePaket>,

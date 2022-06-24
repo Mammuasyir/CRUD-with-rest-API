@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:srcCompat="@drawable/ic_add" />
 
     <ImageView
         android:id="@+id/switchCamera"
@@ -30,6 +30,6 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="@+id/viewFinder"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:srcCompat="@drawable/ic_cameraswitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
