@@ -91,4 +91,10 @@ interface ApiServices {
         @Part("status") status: RequestBody,
     ): Call<respon>
 
+    //search
+    @GET("paket-search/{nama}")
+    fun searchPaket(
+        @Path("nama") nama: String
+    ): Call<ResponsePaket>
+
 }

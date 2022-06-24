@@ -13,9 +13,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rival.my_packet.R
 import com.rival.my_packet.adapter.landing.Landing2Adapter
 import com.rival.my_packet.adapter.landing.LandingAdapter
+import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentHomeBinding
 import com.rival.my_packet.model.ResponseLanding
+import com.rival.my_packet.model.ResponsePaket
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,15 +71,40 @@ class HomeFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     if (it.isNotEmpty()) {
+                        getLandingSearch(it)
+                        rvLanding2.visibility = View.GONE
                     } else {
-                        getLanding()
-                        getLanding2()
+                       getLanding()
+                        rvLanding2.visibility = View.VISIBLE
                     }
                 }
                 return true
             }
 
         })
+    }
+
+    private fun getLandingSearch(it: String) {
+        ApiConfig.instanceRetrofit.searchPaket(it).enqueue(object : Callback<ResponsePaket> {
+            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
+                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(
+                call: Call<ResponsePaket>,
+                response: Response<ResponsePaket>
+            ) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.result
+                    data?.let {
+                        val adapter = PaketAdapter(it)
+                        rvLanding.adapter = adapter
+                        rvLanding.layoutManager = LinearLayoutManager(context)
+                    }
+                }
+            }
+        })
+
     }
 
 
