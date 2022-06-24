@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
+    android:layout_height="80dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="15dp"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="15dp">
 
-    <TextView
-        android:id="@+id/no_landing"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginRight="6dp"
-        android:text="1"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/nama"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginRight="6dp"
-        android:text="MUHAMMAD RIVAL"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Muhammad Rival"
+            android:textColor="@color/oren"
+            android:textSize="22dp" />
 
-    <TextView
-        android:id="@+id/tanggal"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginRight="6dp"
-        android:text="19-okt-2022"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="19-okt-2022"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:text="Status"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/poppinsextra"
+            android:text="Status"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
