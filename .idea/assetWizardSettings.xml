@@ -79,7 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Pro\Downloads\logo_paket.jpg" />
+                                                <entry key="imagePath" value="C:\Users\Pro\Downloads\package.png" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -111,7 +111,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_logo_paket" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="outputName" value="ic_logo_pack" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -305,7 +307,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/remove_red_eye/baseline_remove_red_eye_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/search/baseline_search_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -315,7 +317,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_detail" />
+                            <entry key="outputName" value="ic_search" />
+                            <entry key="sourceFile" value="C:\Users\Pro\AndroidStudioProjects\MyPacket" />
                           </map>
                         </option>
                       </PersistentState>
