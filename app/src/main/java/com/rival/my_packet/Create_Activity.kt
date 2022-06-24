@@ -8,6 +8,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +18,7 @@ import androidx.core.content.FileProvider
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.ActivityCreateBinding
 import com.rival.my_packet.model.respon
+import com.rival.my_packet.ui.paket.SatpamPaketFragment
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -69,7 +71,9 @@ class Create_Activity : AppCompatActivity() {
         binding = ActivityCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = "Create"
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -110,37 +114,6 @@ class Create_Activity : AppCompatActivity() {
     }
 
 
-    private fun takePicture() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(packageManager)
-
-        createCustomTempFile(application).also {
-            val photoURI: Uri = FileProvider.getUriForFile(
-                this@Create_Activity,
-                "com.rival.my_packet",
-                it
-            )
-            currentPhotoPath = it.absolutePath
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            launcherIntentCamera.launch(intent)
-        }
-    }
-
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERA_X_RESULT) {
-            val myFile = it.data?.getSerializableExtra("picture") as File
-
-
-
-            val bitmap = BitmapFactory.decodeFile(myFile.absolutePath)
-            binding.imageView.setImageBitmap(bitmap)
-
-            getFile = myFile
-        }
-    }
-
     private fun kirim() {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
@@ -180,6 +153,7 @@ class Create_Activity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             //back to landing page
+                            val intent = Intent(this@Create_Activity, MainActivity::class.java)
                         }
                     } else {
                         Toast.makeText(this@Create_Activity, response.message(), Toast.LENGTH_SHORT)
@@ -202,5 +176,15 @@ class Create_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+               startActivity(Intent(this, MainActivity::class.java))
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

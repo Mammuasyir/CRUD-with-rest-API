@@ -307,7 +307,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/cameraswitch/baseline_cameraswitch_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/camera/baseline_camera_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -318,8 +318,8 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="e56509" />
-                            <entry key="outputName" value="ic_cameraswitch" />
-                            <entry key="sourceFile" value="C:\Users\Pro\AndroidStudioProjects\MyPacket" />
+                            <entry key="outputName" value="ic_baseline_camera_24" />
+                            <entry key="sourceFile" value="/C:\Users\Pro\AndroidStudioProjects\MyPacket" />
                           </map>
                         </option>
                       </PersistentState>
