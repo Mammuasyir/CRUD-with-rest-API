@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rival.my_packet.adapter.paket.PaketAdapter
+import com.rival.my_packet.adapter.paket.SelesaiAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentSelesaiPaketBinding
 import com.rival.my_packet.model.ResponsePaket
@@ -51,7 +52,7 @@ class SelesaiPaketFragment : Fragment() {
                     val ResponsePaket =
                         response.body() as ResponsePaket
                     val landing = ResponsePaket.result
-                    val landingAdapter = PaketAdapter(landing)
+                    val landingAdapter = SelesaiAdapter(landing)
                     rvSelesai.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(activity)
