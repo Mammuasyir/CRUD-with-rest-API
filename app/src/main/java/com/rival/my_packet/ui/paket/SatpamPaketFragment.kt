@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.rival.my_packet.Create_Activity
 import com.rival.my_packet.R
 import com.rival.my_packet.adapter.paket.PaketAdapter
 import com.rival.my_packet.api.ApiConfig
@@ -25,6 +26,7 @@ import com.rival.my_packet.databinding.FragmentSatpamPaketBinding
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.model.ResponsePaket
 import com.rival.my_packet.model.respon
+import kotlinx.android.synthetic.main.fragment_dashboard_paket.*
 import kotlinx.android.synthetic.main.fragment_satpam_paket.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -93,7 +95,8 @@ class SatpamPaketFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
-            addPaket()
+            startActivity(Intent(requireActivity(), Create_Activity::class.java))
+            activity?.finish()
         }
         swipeRefresh.setOnRefreshListener {
             getPaketSatpam()

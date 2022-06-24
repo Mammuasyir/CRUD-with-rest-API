@@ -52,13 +52,13 @@ interface ApiServices {
         @Path("paket") paket: String
     ): Call<ResponsePaket>
 
-    @Multipart
+    @FormUrlEncoded
     @POST("paket-input")
     fun inputPaket(
-        @Part img: MultipartBody.Part,
-        @Part("nama_penerima") nama_penerima: RequestBody,
-        @Part("ekspedisi") ekspedisi: RequestBody,
-        @Part("status") status: RequestBody,
+        @Field("nama_penerima") nama_penerima: String,
+        @Field("ekspedisi") ekspedisi: String,
+        @Field("status") status: String,
+//        @Field("img")  img: String
     ): Call<respon>
 
     @FormUrlEncoded
@@ -82,8 +82,13 @@ interface ApiServices {
         @Field("password_baru") password_baru: String
     ): Call<ResponseUser>
 
-    fun getLandingSearch(it: String): Any
-    fun getLanding2Search(it: String): Any
-
+    @Multipart
+    @POST("paket-input")
+    fun uploadImage(
+        @Part file: MultipartBody.Part,
+        @Part("nama_penerima") nama_penerima: RequestBody,
+        @Part("ekspedisi") ekspedisi: RequestBody,
+        @Part("status") status: RequestBody,
+    ): Call<respon>
 
 }
