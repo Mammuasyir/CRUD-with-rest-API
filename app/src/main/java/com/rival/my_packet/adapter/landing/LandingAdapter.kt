@@ -15,13 +15,11 @@ class LandingAdapter(var landingItem: Result?) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val nomor = itemView.findViewById<TextView>(R.id.no_landing)
         val tvNama = itemView.findViewById<TextView>(R.id.nama)
         val tvTanggal = itemView.findViewById<TextView>(R.id.tanggal)
         val tvStatus = itemView.findViewById<TextView>(R.id.status)
 
-//        val tvNamaSelesai = itemView.findViewById<TextView>(R.id.nama)
-//        val tvTanggalSelesai = itemView.findViewById<TextView>(R.id.tanggal)
-//        val tvStatusSelesai = itemView.findViewById<TextView>(R.id.status)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,6 +31,7 @@ class LandingAdapter(var landingItem: Result?) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = landingItem?.paket?.get(position)
         val context = holder.itemView.context
+        holder.nomor.text = (position + 1).toString()
         holder.tvNama.text = data?.nama_penerima
         holder.tvTanggal.text = data?.tanggal_input
         holder.tvStatus.text = data?.status

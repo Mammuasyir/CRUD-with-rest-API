@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rival.my_packet.R
@@ -48,14 +49,15 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
         val data = paket?.get(position)
         holder.tvTitle.text = data?.nama_penerima
 
-// hide button detail
-//        sph = SharedPreference(context as FragmentActivity)
-//        val user = sph.getUser()
-//        if (user?.role != "Musyrif") {
-//            holder.btnDelete.visibility = View.VISIBLE
-//        } else {
-//            holder.btnDelete.visibility = View.GONE
-//        }
+// hide button edit and delete
+        sph = SharedPreference(context as FragmentActivity)
+        val user = sph.getUser()
+        if (user?.role != null) {
+            holder.btnDelete.visibility = View.VISIBLE
+        } else {
+            holder.btnEdit.visibility = View.GONE
+            holder.btnDelete.visibility = View.GONE
+        }
 
         holder.btnEdit.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context).create()

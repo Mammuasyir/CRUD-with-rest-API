@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.rival.my_packet.R
 import com.rival.my_packet.adapter.landing.Landing2Adapter
 import com.rival.my_packet.adapter.landing.LandingAdapter
 import com.rival.my_packet.api.ApiConfig
@@ -46,6 +48,8 @@ class HomeFragment : Fragment() {
             getLanding2()
         }
 
+        searchPaket()
+
         getLanding()
         getLanding2()
 //search
@@ -54,6 +58,68 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    private fun searchPaket() {
+        binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.edtSearch.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    if (it.isNotEmpty()) {
+                        getLandingSearch(it)
+                        getLanding2Search(it)
+                    } else {
+                        getLanding()
+                        getLanding2()
+                    }
+                }
+                return true
+            }
+
+        })
+    }
+
+    private fun getLanding2Search(it: String) {
+        ApiConfig.instanceRetrofit.getLanding2Search(it).enqueue(object : Callback<ResponseLanding> {
+            override fun onFailure(call: Call<ResponseLanding>, t: Throwable) {
+                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<ResponseLanding>, response: Response<ResponseLanding>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.result
+                    val adapter = Landing2Adapter(data)
+                    rvLanding2.adapter = adapter
+                    rvLanding2.layoutManager = LinearLayoutManager(context)
+                }
+            }
+        })
+    }
+
+    private fun getLandingSearch(it: String) {
+        ApiConfig.instanceRetrofit.getLandingSearch(it).enqueue(object : Callback<ResponseLanding> {
+            override fun onFailure(call: Call<ResponseLanding>, t: Throwable) {
+                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<ResponseLanding>, response: Response<ResponseLanding>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.result
+                    data?.let {
+                        val adapter = LandingAdapter(it)
+                        rvLanding.adapter = adapter
+                        rvLanding.layoutManager = LinearLayoutManager(context)
+                    }
+                }
+            }
+
+        })
+    }
+
+
     private fun getLanding2() {
         ApiConfig.instanceRetrofit.getlanding().enqueue(object : Callback<ResponseLanding> {
 
@@ -61,7 +127,7 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseLanding>,
                 response: Response<ResponseLanding>
             ) {
-                if (swipeRefresh.isRefreshing){
+                if (swipeRefresh.isRefreshing) {
                     swipeRefresh.isRefreshing = false
                 }
                 if (response.isSuccessful) {
@@ -93,7 +159,7 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseLanding>,
                 response: Response<ResponseLanding>
             ) {
-                if (swipeRefresh.isRefreshing){
+                if (swipeRefresh.isRefreshing) {
                     swipeRefresh.isRefreshing = false
                 }
                 if (response.isSuccessful) {
@@ -117,4 +183,9 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+}
+
+private fun Any.enqueue(callback: Callback<ResponseLanding>) {
+
 }
