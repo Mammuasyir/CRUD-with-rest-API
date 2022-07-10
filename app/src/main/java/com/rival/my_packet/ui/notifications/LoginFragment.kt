@@ -63,6 +63,8 @@ class LoginFragment : Fragment() {
         progressDialog.show()
 
 
+
+
         ApiConfig.instanceRetrofit.login(email, pass)
             .enqueue(object : Callback<ResponseUser> {
                 override fun onResponse(
@@ -71,9 +73,10 @@ class LoginFragment : Fragment() {
                 ) {
 
                     val respon = response.body()
-                    progressDialog.dismiss()
+
                     if (response.isSuccessful) {
                         if (respon?.status == 0) {
+                            progressDialog.dismiss()
                             Toast.makeText(activity, "${respon.pesan}", Toast.LENGTH_SHORT).show()
                         } else {
 

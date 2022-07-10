@@ -14,6 +14,7 @@ import com.rival.my_packet.R
 import com.rival.my_packet.adapter.landing.Landing2Adapter
 import com.rival.my_packet.adapter.landing.LandingAdapter
 import com.rival.my_packet.adapter.paket.PaketAdapter
+import com.rival.my_packet.adapter.search.SearchAdapter
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.FragmentHomeBinding
 import com.rival.my_packet.model.ResponseLanding
@@ -74,7 +75,7 @@ class HomeFragment : Fragment() {
                         getLandingSearch(it)
                         rvLanding2.visibility = View.GONE
                     } else {
-                       getLanding()
+                        getLanding()
                         rvLanding2.visibility = View.VISIBLE
                     }
                 }
@@ -97,7 +98,7 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     val data = response.body()?.result
                     data?.let {
-                        val adapter = PaketAdapter(it)
+                        val adapter = SearchAdapter(it)
                         rvLanding.adapter = adapter
                         rvLanding.layoutManager = LinearLayoutManager(context)
                     }

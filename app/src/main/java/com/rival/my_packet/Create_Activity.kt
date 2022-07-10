@@ -1,6 +1,7 @@
 package com.rival.my_packet
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -36,6 +37,7 @@ class Create_Activity : AppCompatActivity() {
     lateinit var statusList: Spinner
 
     private var getFile: File? = null
+    var progressDialog: Dialog? = null
 
     companion object {
         const val CAMERA_X_RESULT = 200
@@ -86,6 +88,14 @@ class Create_Activity : AppCompatActivity() {
 //        binding.imageView.setOnClickListener { takePicture() }
         binding.btnKirim.setOnClickListener { kirim() }
 
+        progressDialog = Dialog(this)
+    progressDialog?.setContentView(R.layout.dialog_loading)
+        progressDialog?.let {
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+
+
     }
 
     private fun startCameraX() {
@@ -123,7 +133,8 @@ class Create_Activity : AppCompatActivity() {
             val ekspedisi =
                 binding.ekspedisi.text.toString().toRequestBody("text/plain".toMediaType())
             val status =
-                binding.statusPaket.selectedItem.toString().toRequestBody("text/plain".toMediaType())
+                binding.statusPaket.selectedItem.toString()
+                    .toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "img",
@@ -138,13 +149,17 @@ class Create_Activity : AppCompatActivity() {
                 ekspedisi,
                 status
             )
-
+            progressDialog?.show()
             service.enqueue(object : Callback<respon> {
                 override fun onResponse(
                     call: Call<respon>,
                     response: Response<respon>
                 ) {
+
+                    // delay progress dialog
+
                     if (response.isSuccessful) {
+                        progressDialog?.dismiss()
                         val responseBody = response.body()
                         if (responseBody?.status == 1) {
                             Toast.makeText(
@@ -168,6 +183,7 @@ class Create_Activity : AppCompatActivity() {
                         "Gagal instance Retrofit",
                         Toast.LENGTH_SHORT
                     ).show()
+                    progressDialog?.dismiss()
                 }
             })
         } else {
@@ -182,7 +198,7 @@ class Create_Activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-               startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 return true
             }
         }

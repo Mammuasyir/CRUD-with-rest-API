@@ -2,6 +2,7 @@ package com.rival.my_packet.adapter.paket
 
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +20,13 @@ import com.rival.my_packet.model.respon
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.os.Handler
 
 class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
     RecyclerView.Adapter<PaketAdapter.MyViewHolder>() {
     lateinit var sph: SharedPreference
     lateinit var statusList: Spinner
+
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -52,12 +55,16 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
 // hide button edit and delete
         sph = SharedPreference(context as FragmentActivity)
         val user = sph.getUser()
-        if (user?.role != null) {
+        if (user?.role == "Admin" || user?.role == "Satpam") {
             holder.btnDelete.visibility = View.VISIBLE
+            holder.btnEdit.visibility = View.VISIBLE
         } else {
             holder.btnEdit.visibility = View.GONE
             holder.btnDelete.visibility = View.GONE
         }
+
+        // progress bar
+
 
         holder.btnEdit.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context).create()
@@ -111,15 +118,24 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             }
             alertDialog.show()
         }
+        val progressDialog: ProgressDialog by lazy {
+            ProgressDialog(context)
+        }
+
+
 
         // set onclick listener to activity detail
-
-
         holder.btnDelete.setOnClickListener {
+
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Hapus")
             builder.setMessage("Apakakah yakin hapus paket ${data?.nama_penerima} ?")
             builder.setPositiveButton("Ya") { dialog, which ->
+
+                progressDialog.setMessage("Loading...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+
                 ApiConfig.instanceRetrofit.deletePaket(data?.id!!).enqueue(object :
                     Callback<ResponsePaket> {
                     override fun onResponse(
@@ -128,18 +144,45 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                     ) {
 
 
-
+                        progressDialog.dismiss()
                         if (response.isSuccessful) {
                             if (response.body()?.status == 1) {
+
                                 Toast.makeText(
                                     context,
                                     "${response.body()?.pesan}",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                // refresh list after delete
-                                //reload
+                         // clear list data
                                 paket?.get(position)
-                              notifyDataSetChanged(position, paket?.size!!)
+                                notifyItemRemoved(position)
+                                notifyItemRangeChanged(position, paket!!.size)
+                                // clear list data
+                                // get data from server
+                                ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object :
+                                    Callback<ResponsePaket> {
+                                    override fun onResponse(
+                                        call: Call<ResponsePaket>,
+                                        response: Response<ResponsePaket>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            paket = response.body()?.result
+                                            notifyDataSetChanged()
+                                        }
+                                    }
+                                    override fun onFailure(
+                                        call: Call<ResponsePaket>,
+                                        t: Throwable
+                                    ) {
+                                        Toast.makeText(
+                                            context,
+                                            "${t.localizedMessage}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                })
+
+
 
                             } else {
                                 Toast.makeText(context, "Gagal hapus paket", Toast.LENGTH_SHORT)

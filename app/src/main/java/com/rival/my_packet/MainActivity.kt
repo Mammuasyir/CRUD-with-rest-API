@@ -64,7 +64,9 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
 
+
             when(item.itemId){
+
                 R.id.navigation_home -> {
                     callFragment(0, fragmentHome)
                     onRestart()
@@ -72,7 +74,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_dashboard -> {
-                    callFragment(1, fragmentDashboard)
+
+                    if (sPH.getStatusLogin()) {
+                        callFragment(1, fragmentDashboard)
+                    } else {
+                        callFragment(1, fragmentLogin)
+                    }
                     onRestart()
                 }
 
