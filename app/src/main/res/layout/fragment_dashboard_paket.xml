@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="Satpam"
+                        android:fontFamily="@font/poppinsmedium"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="30sp" />

@@ -154,6 +154,7 @@ class Create_Activity : AppCompatActivity() {
                             ).show()
                             //back to landing page
                             val intent = Intent(this@Create_Activity, MainActivity::class.java)
+                            startActivity(intent)
                         }
                     } else {
                         Toast.makeText(this@Create_Activity, response.message(), Toast.LENGTH_SHORT)
