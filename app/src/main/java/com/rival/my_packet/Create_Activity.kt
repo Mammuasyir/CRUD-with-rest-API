@@ -111,15 +111,11 @@ class Create_Activity : AppCompatActivity() {
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
             // FIle -> Bitmap
-            val bitmap = BitmapFactory.decodeFile(myFile.absolutePath)
-            binding.imageView.setImageBitmap(bitmap)
 
             getFile = myFile
-            val result = rotateBitmap(
-                BitmapFactory.decodeFile(getFile?.path),
-                isBackCamera
-            )
-
+            val result = rotateBitmap(BitmapFactory.decodeFile(myFile?.absolutePath),
+                    isBackCamera)
+            binding.imageView.setImageBitmap(result)
         }
     }
 

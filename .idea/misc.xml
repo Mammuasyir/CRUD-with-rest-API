@@ -39,7 +39,7 @@
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
-        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_update_password.xml" value="0.67" />
+        <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_update_password.xml" value="0.2900641025641026" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/activity_welcome.xml" value="0.1" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/create_paket.xml" value="0.33" />
         <entry key="..\:/Users/Pro/AndroidStudioProjects/MyPacket/app/src/main/res/layout/detail_dialog.xml" value="0.33078101071975496" />
@@ -62,13 +62,10 @@
         <entry key="app/src/main/res/drawable/btn_shape.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/btn_shape_shadow.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/button_shape.xml" value="0.176" />
-        <entry key="app/src/main/res/drawable/camera.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/color_cursor.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_button_nav.xml" value="0.1565" />
-        <entry key="app/src/main/res/drawable/ic_cameraswitch.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_musyrif.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.1565" />
         <entry key="app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.1813922356091031" />
@@ -77,7 +74,6 @@
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.2409336817668296" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29739583333333336" />
-        <entry key="app/src/main/res/layout/activity_no_internet_connection.xml" value="0.14463019250253292" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/create_paket.xml" value="0.1" />

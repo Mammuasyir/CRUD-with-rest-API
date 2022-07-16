@@ -89,6 +89,7 @@ class LoginFragment : Fragment() {
                         }
 
                     } else {
+                        progressDialog.dismiss()
                         Toast.makeText(activity, "Password Salah", Toast.LENGTH_SHORT).show()
                     }
                 }
