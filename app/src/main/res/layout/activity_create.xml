@@ -13,8 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
         android:id="@+id/imageView"
-        android:rotation="90"
-        android:scaleType="fitXY"
+        android:src="@drawable/camera"
         android:background="@color/abu"/>
 
     <LinearLayout

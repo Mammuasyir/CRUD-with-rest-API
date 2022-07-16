@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
 import com.rival.my_packet.databinding.ActivityMainBinding
+import com.rival.my_packet.helper.NetworkConnection
 import com.rival.my_packet.helper.SharedPreference
 import com.rival.my_packet.ui.dashboard.DashboardFragment
 import com.rival.my_packet.ui.home.HomeFragment
@@ -46,13 +48,21 @@ class MainActivity : AppCompatActivity() {
         sPH = SharedPreference(this)
         setUpBottomNav()
 
-
+    val networkConnection = NetworkConnection(this)
+        networkConnection.observe(this, androidx.lifecycle.Observer {
+            if (it == true) {
+                Toast.makeText(this, "network avalible", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "network no avalible", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun setUpBottomNav() {
 
         fm.beginTransaction().add(R.id.container, fragmentHome).show(fragmentHome).commit()
-        fm.beginTransaction().add(R.id.container, fragmentDashboard).hide(fragmentDashboard).commit()
+        fm.beginTransaction().add(R.id.container, fragmentDashboard).hide(fragmentDashboard)
+            .commit()
         fm.beginTransaction().add(R.id.container, fragmentAccount).hide(fragmentAccount).commit()
         fm.beginTransaction().add(R.id.container, fragmentLogin).hide(fragmentLogin).commit()
 
@@ -65,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
 
 
-            when(item.itemId){
+            when (item.itemId) {
 
                 R.id.navigation_home -> {
                     callFragment(0, fragmentHome)
@@ -86,10 +96,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications -> {
                     onRestart()
 
-                    if (sPH.getStatusLogin()){
+                    if (sPH.getStatusLogin()) {
                         callFragment(2, fragmentAccount)
-                    }else{
-                       callFragment(2, fragmentLogin)
+                    } else {
+                        callFragment(2, fragmentLogin)
 //                        Toast.makeText(this,"Login Dulu !", Toast.LENGTH_SHORT).show()
                     }
 
