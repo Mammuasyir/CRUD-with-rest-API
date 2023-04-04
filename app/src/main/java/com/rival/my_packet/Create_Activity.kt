@@ -5,21 +5,17 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.MenuItem
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.ActivityCreateBinding
 import com.rival.my_packet.model.respon
-import com.rival.my_packet.ui.paket.SatpamPaketFragment
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -113,9 +109,9 @@ class Create_Activity : AppCompatActivity() {
             // FIle -> Bitmap
 
             getFile = myFile
-            val result = rotateBitmap(BitmapFactory.decodeFile(myFile?.absolutePath),
-                    isBackCamera)
-            binding.imageView.setImageBitmap(result)
+            val bitmap = BitmapFactory.decodeFile(myFile.absolutePath)
+            binding.imageView.setImageBitmap(bitmap)
+
         }
     }
 

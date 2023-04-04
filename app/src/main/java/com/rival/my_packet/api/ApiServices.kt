@@ -8,8 +8,6 @@ import com.rival.my_packet.model.user.ResponseUser
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.http.*
 
 
@@ -92,9 +90,9 @@ interface ApiServices {
     ): Call<respon>
 
     //search
-    @GET("paket-search/{nama}")
+    @GET("paket-search")
     fun searchPaket(
-        @Path("nama") nama: String
-    ): Call<ResponsePaket>
+        @Query("cari") nama: String
+    ): Call<ResponseLanding>
 
 }

@@ -21,13 +21,13 @@ class SearchAdapter(var search: List<ResultItem?>?) :    RecyclerView.Adapter<Se
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_list_landing, parent, false)
-        return SearchAdapter.MyViewHolder(view)
+        return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SearchAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = search?.get(position)
         val context = holder.itemView.context
         holder.tvNama.text = data?.nama_penerima
@@ -53,7 +53,7 @@ class SearchAdapter(var search: List<ResultItem?>?) :    RecyclerView.Adapter<Se
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
             var pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
 
-            val UrlImage = "https://paket.siyap.co.id/storage/${search?.get(position)?.img}"
+            val UrlImage = "https://paket.idnbs-smk-bogor.my.id/storage/${search?.get(position)?.img}"
 
             Glide.with(context).load(UrlImage).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = data?.nama_penerima

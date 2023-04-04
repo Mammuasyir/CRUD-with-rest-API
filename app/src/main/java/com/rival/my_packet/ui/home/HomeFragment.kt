@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.rival.my_packet.R
 import com.rival.my_packet.adapter.landing.Landing2Adapter
 import com.rival.my_packet.adapter.landing.LandingAdapter
 import com.rival.my_packet.adapter.paket.PaketAdapter
@@ -86,27 +85,67 @@ class HomeFragment : Fragment() {
     }
 
     private fun getLandingSearch(it: String) {
-        ApiConfig.instanceRetrofit.searchPaket(it).enqueue(object : Callback<ResponsePaket> {
-            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
-                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()
-            }
+        ApiConfig.instanceRetrofit.searchPaket(it).enqueue(object : Callback<ResponseLanding> {
 
             override fun onResponse(
-                call: Call<ResponsePaket>,
-                response: Response<ResponsePaket>
+                call: Call<ResponseLanding>,
+                response: Response<ResponseLanding>
             ) {
+                if (swipeRefresh.isRefreshing) {
+                    swipeRefresh.isRefreshing = false
+                }
                 if (response.isSuccessful) {
-                    val data = response.body()?.result
-                    data?.let {
-                        val adapter = SearchAdapter(it)
-                        rvLanding.adapter = adapter
-                        rvLanding.layoutManager = LinearLayoutManager(context)
+                    val responseLanding =
+                        response.body() as ResponseLanding
+                    val landing = responseLanding?.result
+                    val landingAdapter = LandingAdapter(landing)
+                    rvLanding.apply {
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(activity)
+                        (layoutManager as LinearLayoutManager).orientation =
+                            LinearLayoutManager.VERTICAL
+                        landingAdapter.notifyDataSetChanged()
+                        adapter = landingAdapter
                     }
                 }
             }
-        })
 
+            override fun onFailure(call: Call<ResponseLanding>, t: Throwable) {
+                Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
+//    private fun getLandingSearch(it: String) {
+//        ApiConfig.instanceRetrofit.searchPaket(it).enqueue(object : Callback<ResponsePaket> {
+//            override fun onResponse(
+//                call: Call<ResponsePaket>,
+//                response: Response<ResponsePaket>
+//            ) {
+//                if (swipeRefresh.isRefreshing) {
+//                    swipeRefresh.isRefreshing = false
+//                }
+//                if (response.isSuccessful) {
+//                    val responsePaket =
+//                        response.body() as ResponsePaket
+//                    val paket = ResponseLanding?.result
+//                    val paketAdapter = PaketAdapter(paket)
+//                    rvLanding.apply {
+//                        setHasFixedSize(true)
+//                        layoutManager = LinearLayoutManager(activity)
+//                        (layoutManager as LinearLayoutManager).orientation =
+//                            LinearLayoutManager.VERTICAL
+//                        paketAdapter.notifyDataSetChanged()
+//                        adapter = SearchAdapter(paket)
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
+//                Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 
 
     private fun getLanding2() {

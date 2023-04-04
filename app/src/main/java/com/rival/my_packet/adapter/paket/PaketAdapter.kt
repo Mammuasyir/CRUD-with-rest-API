@@ -214,7 +214,7 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             val tanggal = views.findViewById<TextView>(R.id.tv_taggal_dtl)
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
             val pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
-            val UrlImage = "https://paket.siyap.co.id/storage/${data?.img}"
+            val UrlImage = "https://paket.idnbs-smk-bogor.my.id/storage/${data?.img}"
 
             Glide.with(context).load(UrlImage)
                 .into(views.findViewById<ImageView>(R.id.img_paket_dtl))

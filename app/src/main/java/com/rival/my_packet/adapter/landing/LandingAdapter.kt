@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.Rotate
 import com.rival.my_packet.R
 import com.rival.my_packet.model.Result
 
@@ -53,9 +54,11 @@ class LandingAdapter(var landingItem: Result?) :
             val status = views.findViewById<TextView>(R.id.tv_status_paket)
             var pengambil = views.findViewById<TextView>(R.id.tv_pengambil_paket)
 
-            val UrlImage = "https://paket.siyap.co.id/storage/${landingItem?.paket?.get(position)?.img}"
+            val UrlImage = "https://paket.idnbs-smk-bogor.my.id/storage/${landingItem?.paket?.get(position)?.img}"
 
-            Glide.with(context).load(UrlImage).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
+            //rotate image 90 degree
+            //set image max width and height
+            Glide.with(context).load(UrlImage).override(1000, 1000).into(views.findViewById<ImageView>(R.id.img_paket_dtl))
             nama.text = data?.nama_penerima
             tanggal.text = data?.tanggal_input
             status.text = data?.status
