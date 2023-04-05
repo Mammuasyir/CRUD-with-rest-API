@@ -17,6 +17,7 @@ import com.rival.my_packet.R
 
 import com.rival.my_packet.adapter.ViewPagerAdapter
 import com.rival.my_packet.databinding.FragmentDashboardBinding
+import com.rival.my_packet.helper.SharedPreference
 
 
 class DashboardFragment : Fragment() {
@@ -47,16 +48,29 @@ class DashboardFragment : Fragment() {
     }
 
     private fun viewPagerTab() {
+        val sPH = SharedPreference(requireActivity())
         tabLayout = binding.tabLayout
         viewPager = binding.viewPager
-        viewPager.adapter = ViewPagerAdapter(requireActivity())
+        viewPager.adapter = ViewPagerAdapter(requireActivity(), sPH)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            when (position) {
-                //0 -> tab.text = "전체"
 
-                0 -> tab.text = "Dashboard"
-                1 -> tab.text = "POS Satpam"
-                2 -> tab.text = "R. Musyrif"
+            if (sPH.getUser()?.role == "Satpam") {
+                when (position) {
+                    0 -> tab.text = "Dashboard"
+                    1 -> tab.text = "POS Satpam"
+                    2 -> tab.text = "Selesai"
+                }
+            } else if (sPH.getUser()?.role == "Musyrif") {
+                when (position) {
+                    0 -> tab.text = "Dashboard"
+                    1 -> tab.text = "R. Musyrif"
+                    2 -> tab.text = "Selesai"
+                }
+            } else
+            when (position) {
+                0 -> tab.text = "Dash"
+                1 -> tab.text = "Satpam"
+                2 -> tab.text = "Musyrif"
                 3 -> tab.text = "Selesai"
             }
         }.attach()

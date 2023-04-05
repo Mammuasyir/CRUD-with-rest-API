@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.rival.my_packet.api.ApiConfig
 import com.rival.my_packet.databinding.ActivityCreateBinding
 import com.rival.my_packet.model.respon
+import com.rival.my_packet.ui.paket.SatpamPaketFragment
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -188,12 +189,17 @@ class Create_Activity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 startActivity(Intent(this, MainActivity::class.java))
-                return true
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+    }
+    override fun onBackPressed() {
+            super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java))
+
     }
 }

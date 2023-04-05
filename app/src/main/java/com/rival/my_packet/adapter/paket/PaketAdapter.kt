@@ -84,10 +84,17 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
             // spiner selected
             statusList[R.array.Status] = data?.status
             pengambil.setText(data?.penerima_paket)
-
+            val progressDialog: ProgressDialog by lazy {
+                ProgressDialog(context)
+            }
             update.setOnClickListener {
                 val status = statusList.selectedItem.toString()
                 val pengambil = pengambil.text.toString()
+                val builder = AlertDialog.Builder(context)
+
+                progressDialog.setMessage("Mengupdate...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
 
                 ApiConfig.instanceRetrofit.updatePaket(
                     data?.id!!,
@@ -102,9 +109,38 @@ class PaketAdapter(var paket: List<ResultItem?>? = listOf()) :
                         call: Call<respon>,
                         response: Response<respon>
                     ) {
+                        progressDialog.dismiss()
                         if (response.isSuccessful) {
                             Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show()
                             alertDialog.dismiss()
+
+                            paket?.get(position)
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, paket!!.size)
+                            // clear list data
+                            // get data from server
+                            ApiConfig.instanceRetrofit.getpaketSatpam().enqueue(object :
+                                Callback<ResponsePaket> {
+                                override fun onResponse(
+                                    call: Call<ResponsePaket>,
+                                    response: Response<ResponsePaket>
+                                ) {
+                                    if (response.isSuccessful) {
+                                        paket = response.body()?.result
+                                        notifyDataSetChanged()
+                                    }
+                                }
+                                override fun onFailure(
+                                    call: Call<ResponsePaket>,
+                                    t: Throwable
+                                ) {
+                                    Toast.makeText(
+                                        context,
+                                        "${t.localizedMessage}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
 
                         } else {
                             Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show()

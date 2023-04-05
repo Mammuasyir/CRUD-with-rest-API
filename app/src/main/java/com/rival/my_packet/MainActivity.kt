@@ -117,4 +117,9 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().hide(active).show(fragment).commit()
         active = fragment
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Kode untuk memanipulasi UI
+    }
 }

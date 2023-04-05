@@ -14,6 +14,7 @@ class SharedPreference(activity: FragmentActivity){
 
     val user = "User"
 
+
     init {
         sharedPreference = activity.getSharedPreferences(myPref, Context.MODE_PRIVATE)
     }
@@ -37,6 +38,8 @@ class SharedPreference(activity: FragmentActivity){
         val data = sharedPreference.getString(user, null) ?: return null
         return Gson().fromJson<DataUser>(data, DataUser::class.java)
     }
+
+
 
     //delete data user
     fun deleteUser(){

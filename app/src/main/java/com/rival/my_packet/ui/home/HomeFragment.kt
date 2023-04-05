@@ -116,37 +116,6 @@ class HomeFragment : Fragment() {
         })
     }
 
-//    private fun getLandingSearch(it: String) {
-//        ApiConfig.instanceRetrofit.searchPaket(it).enqueue(object : Callback<ResponsePaket> {
-//            override fun onResponse(
-//                call: Call<ResponsePaket>,
-//                response: Response<ResponsePaket>
-//            ) {
-//                if (swipeRefresh.isRefreshing) {
-//                    swipeRefresh.isRefreshing = false
-//                }
-//                if (response.isSuccessful) {
-//                    val responsePaket =
-//                        response.body() as ResponsePaket
-//                    val paket = ResponseLanding?.result
-//                    val paketAdapter = PaketAdapter(paket)
-//                    rvLanding.apply {
-//                        setHasFixedSize(true)
-//                        layoutManager = LinearLayoutManager(activity)
-//                        (layoutManager as LinearLayoutManager).orientation =
-//                            LinearLayoutManager.VERTICAL
-//                        paketAdapter.notifyDataSetChanged()
-//                        adapter = SearchAdapter(paket)
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponsePaket>, t: Throwable) {
-//                Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
-
 
     private fun getLanding2() {
         ApiConfig.instanceRetrofit.getlanding().enqueue(object : Callback<ResponseLanding> {
