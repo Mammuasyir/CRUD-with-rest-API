@@ -55,14 +55,6 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean): Bitmap {
     )
 }
 
-
-
-
-
-
-
-
-
 fun uriToFile(selectedImg: Uri, context: Context): File {
     val contentResolver: ContentResolver = context.contentResolver
     val myFile = createCustomTempFile(context)

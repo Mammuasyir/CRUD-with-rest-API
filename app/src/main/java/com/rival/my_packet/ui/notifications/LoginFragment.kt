@@ -1,5 +1,6 @@
 package com.rival.my_packet.ui.notifications
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -44,16 +45,17 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ShowToast")
     private fun login() {
         val email = binding.edtLoginEmail.text.toString()
         val pass = binding.edtLoginPass.text.toString()
 
-        if (email.isEmpty()) {
+        if (email.isNullOrBlank()) {
             binding.edtLoginEmail.error = "Isi dulu !"
             return
         }
 
-        if (pass.isEmpty()) {
+        if (pass.isNullOrBlank()) {
             binding.edtLoginPass.error = "Isi dulu !"
             return
         }
@@ -83,20 +85,21 @@ class LoginFragment : Fragment() {
                             sph.setStatusLogin(true)
                             sph.setUser(respon?.result!!)
 
-                            startActivity(Intent(activity, MainActivity::class.java))
-                            Toast.makeText(activity, respon?.pesan, Toast.LENGTH_SHORT).show()
-                            activity?.finish()
+                            startActivity(Intent(requireActivity(), MainActivity::class.java))
+                            Toast.makeText(requireActivity(), respon?.pesan, Toast.LENGTH_SHORT).show()
+                            requireActivity().finish()
                         }
 
                     } else {
                         progressDialog.dismiss()
-                        Toast.makeText(activity, "Password Salah", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Email atau Password Salah", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
-                    Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_SHORT)
-                        .show()
+                    progressDialog.dismiss()
+                    Toast.makeText(activity, "Terjadi kesalahan saat login: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+                    t.printStackTrace()
                 }
             })
     }

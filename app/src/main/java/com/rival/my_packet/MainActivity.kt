@@ -48,43 +48,40 @@ class MainActivity : AppCompatActivity() {
         sPH = SharedPreference(this)
         setUpBottomNav()
 
-    val networkConnection = NetworkConnection(this)
-        networkConnection.observe(this, androidx.lifecycle.Observer {
-            if (it == true) {
-                Toast.makeText(this, "network avalible", Toast.LENGTH_SHORT).show()
+        val networkConnection = NetworkConnection(this)
+        networkConnection.observe(this, { isConnected ->
+            if (isConnected) {
+                Toast.makeText(this, "Network is available", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "network no avalible", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Network is not available", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun setUpBottomNav() {
-
-        fm.beginTransaction().add(R.id.container, fragmentHome).show(fragmentHome).commit()
-        fm.beginTransaction().add(R.id.container, fragmentDashboard).hide(fragmentDashboard)
+        fm.beginTransaction()
+            .add(R.id.container, fragmentHome)
+            .add(R.id.container, fragmentDashboard)
+            .add(R.id.container, fragmentAccount)
+            .add(R.id.container, fragmentLogin)
+            .hide(fragmentDashboard)
+            .hide(fragmentAccount)
+            .hide(fragmentLogin)
+            .show(fragmentHome)
             .commit()
-        fm.beginTransaction().add(R.id.container, fragmentAccount).hide(fragmentAccount).commit()
-        fm.beginTransaction().add(R.id.container, fragmentLogin).hide(fragmentLogin).commit()
 
-//        bottomNavigationView = findViewById(R.id.nav_view)
         bottomNavigationView = binding.navView
         menu = bottomNavigationView.menu
         menuItem = menu.getItem(0)
         menuItem.isChecked = true
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-
-
             when (item.itemId) {
-
                 R.id.navigation_home -> {
                     callFragment(0, fragmentHome)
                     onRestart()
-
                 }
-
                 R.id.navigation_dashboard -> {
-
                     if (sPH.getStatusLogin()) {
                         callFragment(1, fragmentDashboard)
                     } else {
@@ -92,31 +89,30 @@ class MainActivity : AppCompatActivity() {
                     }
                     onRestart()
                 }
-
                 R.id.navigation_notifications -> {
                     onRestart()
-
                     if (sPH.getStatusLogin()) {
                         callFragment(2, fragmentAccount)
                     } else {
                         callFragment(2, fragmentLogin)
-//                        Toast.makeText(this,"Login Dulu !", Toast.LENGTH_SHORT).show()
                     }
-
                 }
             }
-
-            false
+            true
         }
-
     }
 
     private fun callFragment(index: Int, fragment: Fragment) {
         menuItem = menu.getItem(index)
-        menuItem.isChecked = true
-        fm.beginTransaction().hide(active).show(fragment).commit()
+        menuItem?.isChecked = true
+        fm.beginTransaction().apply {
+            hide(active)
+            show(fragment)
+            commit()
+        }
         active = fragment
     }
+
 
     override fun onResume() {
         super.onResume()

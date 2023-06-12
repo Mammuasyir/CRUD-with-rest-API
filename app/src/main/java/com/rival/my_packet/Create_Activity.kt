@@ -28,7 +28,8 @@ import retrofit2.Response
 import java.io.File
 
 class Create_Activity : AppCompatActivity() {
-    lateinit var binding: ActivityCreateBinding
+
+    private lateinit var binding: ActivityCreateBinding
 
     private lateinit var currentPhotoPath: String
     lateinit var statusList: Spinner
